@@ -2,8 +2,8 @@ services:
   house-planner:
     build: .
     image: house-planner:latest
-    ports:
-      - "${HOUSE_PORT:-8800}:8800"
+    #ports:
+    #  - "${HOUSE_PORT:-8800}:8800"
     environment:
       HOUSE_PASSWORD: ${HOUSE_PASSWORD:-}
       HOUSE_SETUP_KEY: ${HOUSE_SETUP_KEY:-}
