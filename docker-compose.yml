@@ -5,9 +5,9 @@ services:
     ports:
       - "${HOUSE_PORT:-8800}:8800"
     environment:
-      HOUSE_PASSWORD: ${HOUSE_PASSWORD:-best}
-      HOUSE_SETUP_KEY: ${HOUSE_SETUP_KEY:-best}
-      HOUSE_DEMO: ${HOUSE_DEMO:-best}
+      HOUSE_PASSWORD: ${HOUSE_PASSWORD:-oyesletta22}
+      HOUSE_SETUP_KEY: ${HOUSE_SETUP_KEY:-oyesletta22}
+      HOUSE_DEMO: ${HOUSE_DEMO:-oyesletta22}
     volumes:
       - house-data:/var/lib/house-planner
     restart: unless-stopped
