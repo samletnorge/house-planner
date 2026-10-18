@@ -24,7 +24,7 @@ RUN mkdir -p "$HOUSE_STORAGE" \
  && chown root:root /var/www/html && chmod 755 /var/www/html \
  && chown -R www-data:www-data "$HOUSE_STORAGE" /var/www/html/data /var/www/html/plans
 VOLUME /var/lib/house-planner
-EXPOSE 8080
+EXPOSE 8800
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD ["php", "/usr/local/lib/house-planner/healthcheck.php"]
 ENTRYPOINT ["house-entrypoint"]

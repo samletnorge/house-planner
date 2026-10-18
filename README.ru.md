@@ -68,7 +68,7 @@ cd house-planner
 docker compose up -d --build
 ```
 
-Откройте <http://localhost:8080/> и задайте пароль в мастере `/api/setup.php`. Без мастера — передать пароль при первом старте: `HOUSE_PASSWORD='длинный-пароль' docker compose up -d --build`. Порт задаёт `HOUSE_PORT` (по умолчанию `8080`). План, все версии и конфигурация лежат в томе `house-data` и переживают пересборку и перезапуск. `HOUSE_PASSWORD` применяется только к пустому хранилищу; чтобы потом сменить пароль, удалите `config.php` из тома (`docker compose exec house-planner rm /var/lib/house-planner/config.php`) и запустите снова с новым `HOUSE_PASSWORD` или через мастер. Резервные копии и HTTPS за обратным прокси — в [руководстве по установке](docs/guide/ru/install.md#docker).
+Откройте <http://localhost:8800/> и задайте пароль в мастере `/api/setup.php`. Без мастера — передать пароль при первом старте: `HOUSE_PASSWORD='длинный-пароль' docker compose up -d --build`. Порт задаёт `HOUSE_PORT` (по умолчанию `8800`). План, все версии и конфигурация лежат в томе `house-data` и переживают пересборку и перезапуск. `HOUSE_PASSWORD` применяется только к пустому хранилищу; чтобы потом сменить пароль, удалите `config.php` из тома (`docker compose exec house-planner rm /var/lib/house-planner/config.php`) и запустите снова с новым `HOUSE_PASSWORD` или через мастер. Резервные копии и HTTPS за обратным прокси — в [руководстве по установке](docs/guide/ru/install.md#docker).
 
 ### Режим разработки
 

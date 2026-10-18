@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HOUSE_PASSWORD: ci-password-123
-      HOUSE_PORT: 8080
-      BASE: http://127.0.0.1:8080
+      HOUSE_PORT: 8800
+      BASE: http://127.0.0.1:8800
     steps:
       - uses: actions/checkout@v4
 

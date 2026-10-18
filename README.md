@@ -68,7 +68,7 @@ cd house-planner
 docker compose up -d --build
 ```
 
-Open <http://localhost:8080/> and set a password in the wizard at `/api/setup.php`. To skip the wizard, pass the password on first start: `HOUSE_PASSWORD='long-password' docker compose up -d --build`. The port is set by `HOUSE_PORT` (default `8080`). The plan, all versions and the config live in the `house-data` volume and survive rebuilds and restarts. `HOUSE_PASSWORD` is applied only to an empty storage; to change the password later, remove `config.php` from the volume (`docker compose exec house-planner rm /var/lib/house-planner/config.php`) and start again with a new `HOUSE_PASSWORD` or the wizard. Backups and HTTPS behind a reverse proxy: [installation guide](docs/guide/en/install.md#docker).
+Open <http://localhost:8800/> and set a password in the wizard at `/api/setup.php`. To skip the wizard, pass the password on first start: `HOUSE_PASSWORD='long-password' docker compose up -d --build`. The port is set by `HOUSE_PORT` (default `8800`). The plan, all versions and the config live in the `house-data` volume and survive rebuilds and restarts. `HOUSE_PASSWORD` is applied only to an empty storage; to change the password later, remove `config.php` from the volume (`docker compose exec house-planner rm /var/lib/house-planner/config.php`) and start again with a new `HOUSE_PASSWORD` or the wizard. Backups and HTTPS behind a reverse proxy: [installation guide](docs/guide/en/install.md#docker).
 
 ### Development mode
 

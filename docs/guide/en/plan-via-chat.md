@@ -19,7 +19,7 @@ HOUSE_URL=https://plan.example.com
 HOUSE_PASSWORD=your-planner-password
 ```
 
-`HOUSE_URL` falls back to `DEPLOY_URL` if that is already set for deployment. For a local Docker run use `http://localhost:8080`.
+`HOUSE_URL` falls back to `DEPLOY_URL` if that is already set for deployment. For a local Docker run use `http://localhost:8800`.
 
 ## The loop
 

@@ -18,7 +18,7 @@ cd house-planner
 docker compose up -d --build
 ```
 
-Open <http://localhost:8080/>. On the first run the app asks you to finish setup: open `/api/setup.php` and set a password (at least 8 characters).
+Open <http://localhost:8800/>. On the first run the app asks you to finish setup: open `/api/setup.php` and set a password (at least 8 characters).
 
 **Password from the environment.** To skip the wizard, pass the password on the first start:
 
@@ -28,7 +28,7 @@ HOUSE_PASSWORD='a-long-password' docker compose up -d --build
 
 The password is applied only when the storage is empty. Once installed, `HOUSE_PASSWORD` is ignored, so it is safe to leave it in your `.env`.
 
-**Port.** The container listens on `8080`; the host port is `HOUSE_PORT` (default `8080`):
+**Port.** The container listens on `8800`; the host port is `HOUSE_PORT` (default `8800`):
 
 ```bash
 HOUSE_PORT=9000 docker compose up -d

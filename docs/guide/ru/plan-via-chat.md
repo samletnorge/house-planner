@@ -19,7 +19,7 @@ HOUSE_URL=https://plan.example.com
 HOUSE_PASSWORD=пароль-планировщика
 ```
 
-Если `HOUSE_URL` не задан, берётся `DEPLOY_URL` из настроек заливки. Для локального Docker — `http://localhost:8080`.
+Если `HOUSE_URL` не задан, берётся `DEPLOY_URL` из настроек заливки. Для локального Docker — `http://localhost:8800`.
 
 ## Цикл правки
 
