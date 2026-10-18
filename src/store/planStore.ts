@@ -6,6 +6,7 @@ import {
   DEFAULT_WALL_THICKNESS,
   clampOpenings,
   findMaterial,
+  levelsOf,
   nextId,
   type Plan,
   type Point,
@@ -136,16 +137,12 @@ export const usePlanStore = create<PlanState>()(
         loadPlan: (plan, opts) => {
           const { activeMaterialId, selectedWallId, fitNonce } = get()
           usePlanStore.temporal.getState().pause()
-          const level = Math.max(
-            0,
-            ...plan.walls.map((w) => w.level ?? 0),
-            ...plan.furniture.map((f) => f.level ?? 0),
-            ...(plan.rooms ?? []).map((r) => r.level ?? 0),
-          )
+          const levels = levelsOf(plan)
+          const top = levels.length ? levels[levels.length - 1] : 0
           set({
             plan,
-            level: Math.min(get().level, level),
-            levelCount: level + 1,
+            level: Math.min(get().level, top),
+            levelCount: top + 1,
             selectedWallId: plan.walls.some((w) => w.id === selectedWallId) ? selectedWallId : null,
             activeMaterialId: plan.materials.some((m) => m.id === activeMaterialId)
               ? activeMaterialId
@@ -161,8 +158,12 @@ export const usePlanStore = create<PlanState>()(
           const next = clampOpenings(plan)
           const selected = get().selectedWallId
           const op = get().selectedOpeningId
+          const levels = levelsOf(next)
+          const top = levels.length ? levels[levels.length - 1] : 0
           set({
             plan: next,
+            level: Math.min(get().level, top),
+            levelCount: top + 1,
             selectedWallId: selected && next.walls.some((w) => w.id === selected) ? selected : null,
             selectedOpeningId: op && next.openings.some((o) => o.id === op) ? op : null,
             selectedFurnitureId:

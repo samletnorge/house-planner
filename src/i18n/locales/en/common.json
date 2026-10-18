@@ -153,7 +153,8 @@
     "openings_other": "{{count}} openings",
     "items_one": "{{count}} item",
     "items_other": "{{count}} items",
-    "selSummary": "{{walls}}, {{openings}}, {{items}}"
+    "selSummary": "{{walls}}, {{openings}}, {{items}}",
+    "roofHint": "The roof is configured in the 3D view."
   },
   "demo": {
     "long": "Demo: changes are visible to everyone and reset every hour — get your own copy on",

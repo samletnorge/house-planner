@@ -6,11 +6,25 @@ export const levelOf = (item: { level?: number } | undefined | null) => item?.le
 
 export const floorHeightOf = (plan: Plan) => plan.site.floorHeight ?? DEFAULT_FLOOR_HEIGHT
 
-export function levelsOf(plan: Plan): number[] {
+export function wallLevelsOf(plan: Plan): number[] {
   const levels = new Set<number>()
   for (const w of plan.walls) levels.add(levelOf(w))
   for (const f of plan.furniture) levels.add(levelOf(f))
   for (const r of plan.rooms ?? []) levels.add(levelOf(r))
+  return [...levels].sort((a, b) => a - b)
+}
+
+export function roofLevelOf(plan: Plan): number | null {
+  const roof = plan.roof
+  if (!roof || roof.type === 'none') return null
+  return roof.level ?? Math.max(0, ...wallLevelsOf(plan)) + 1
+}
+
+export function levelsOf(plan: Plan): number[] {
+  const levels = new Set(wallLevelsOf(plan))
+  const roof = roofLevelOf(plan)
+  if (roof !== null) levels.add(roof)
+  for (const r of plan.roofs ?? []) if (r.type !== 'none' && r.level !== undefined) levels.add(r.level)
   return [...levels].sort((a, b) => a - b)
 }
 

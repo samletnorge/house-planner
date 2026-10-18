@@ -106,6 +106,20 @@ export default function View3DSection({ plan, onChange }: Props) {
           <Segmented options={finishOptions()} value={currentFinish} onChange={pickFinish} size="sm" />
         </CanvasToolbar>
       )}
+      {!viewOnly && onChange && (
+        <CanvasToolbar placement="bottom-right" className="view3d__roof">
+          <span className="view3d__label">{t('toolbar.roof')}</span>
+          <Segmented
+            size="sm"
+            value={plan.roof?.type ?? 'none'}
+            options={[
+              { value: 'none', label: t('toolbar.roofNone') },
+              { value: 'mansard', label: t('toolbar.roofMansard') },
+            ]}
+            onChange={(type) => onChange({ ...plan, roof: { ...(plan.roof ?? {}), type } })}
+          />
+        </CanvasToolbar>
+      )}
       {!viewOnly && (
         <CanvasToolbar placement="top-right" className="view3d__colors">
           <ColorPicker label={t('toolbar.wallColor')} value={palette.walls ?? DEFAULT_WALLS} onPick={pickWalls} presets={writePalette} />

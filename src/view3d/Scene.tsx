@@ -5,11 +5,12 @@ import { CameraControls, Edges, Environment, Grid, Lightformer, Line, useTexture
 import { EffectComposer, N8AO, ToneMapping } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
 import { t } from '../i18n'
-import { filterPlanByLevel, floorHeightOf, levelsOf, type Palette } from '../model'
+import { filterPlanByLevel, floorHeightOf, levelsOf, roofLevelOf, wallLevelsOf, type Palette } from '../model'
 import type { Finish, FurnitureItem, Material, Opening, Plan, Point, Wall } from './types'
 import { resolveColors, type Colors } from './palette'
 import { bounds, exteriorWalls, openingPlacement, sanitizePlan, slabOutline, wallGroups, wallEdges, wallFrame, wallSeams, wallSolid, worldUV } from './geometry'
 import { TEXTURE_SIZE, finishOf, modelColor, seamPattern, shade, textureSet, type Look, type TextureSet } from './looks'
+import { Roof } from './Roof'
 
 const M = 0.001
 const SLAB = 0.25
@@ -462,8 +463,18 @@ function Furniture({ plan, render, elevation = 0 }: { plan: Plan; render: (item:
 export function Scene3D({ plan: rawPlan, view, nonce, look, grid, finishOverride, roof, texturesUrl, renderFurniture, cut = 'full', onlyLevel }: Scene3DProps) {
   const plan = useMemo(() => sanitizePlan(rawPlan), [rawPlan])
   const allLevels = useMemo(() => (levelsOf(plan).length ? levelsOf(plan) : [0]), [plan])
+  const roofLevel = roofLevelOf(plan)
+  const wallLevelsAll = useMemo(() => (wallLevelsOf(plan).length ? wallLevelsOf(plan) : [0]), [plan])
+  const topWallLevel = wallLevelsAll[wallLevelsAll.length - 1]
   const levels = onlyLevel === undefined ? allLevels : [onlyLevel]
-  const maxLevel = allLevels[allLevels.length - 1]
+  const wallLevels = levels.filter((level) => level !== roofLevel)
+  const topPlan = useMemo(() => filterPlanByLevel(plan, topWallLevel), [plan, topWallLevel])
+  const roofBaseLevel = plan.roof?.baseLevel ?? topWallLevel
+  const basePlan = useMemo(() => filterPlanByLevel(plan, roofBaseLevel), [plan, roofBaseLevel])
+  const baseWallTop = useMemo(() => Math.max(0, ...basePlan.walls.map((w) => w.height)) * M, [basePlan])
+  const roofBase = SLAB + roofBaseLevel * floorHeightOf(plan) * M + baseWallTop
+  const roofVisible =
+    plan.roof?.type === 'mansard' && cut === 'full' && (onlyLevel === undefined || (roofLevel !== null && onlyLevel === roofLevel))
   const house = useRef<THREE.Group>(null)
   const base = texturesUrl ?? defaultTexturesUrl()
   const palette = (rawPlan as Plan & { palette?: Palette }).palette
@@ -516,20 +527,40 @@ export function Scene3D({ plan: rawPlan, view, nonce, look, grid, finishOverride
         </Environment>
         <Site plan={plan} grid={grid} ctx={ctx} />
         <group ref={house}>
-          {levels.map((level) => {
+          {wallLevels.map((level) => {
             const lp = filterPlanByLevel(plan, level)
             const elevation = level * floorHeightOf(plan) * M
-            const top = level === maxLevel
             return look === 'model' ? (
-              <HouseBody key={level} plan={lp} ctx={ctx} finishOverride={finishOverride} roof={top ? roof : undefined} cut={cut} elevation={elevation} />
+              <HouseBody key={level} plan={lp} ctx={ctx} finishOverride={finishOverride} roof={level === topWallLevel ? roof : undefined} cut={cut} elevation={elevation} />
             ) : (
-              <Suspense key={level} fallback={<HouseBody plan={lp} ctx={modelCtx} finishOverride={finishOverride} roof={top ? roof : undefined} cut={cut} elevation={elevation} />}>
-                <HouseBody plan={lp} ctx={ctx} finishOverride={finishOverride} roof={top ? roof : undefined} cut={cut} elevation={elevation} />
+              <Suspense key={level} fallback={<HouseBody plan={lp} ctx={modelCtx} finishOverride={finishOverride} roof={level === topWallLevel ? roof : undefined} cut={cut} elevation={elevation} />}>
+                <HouseBody plan={lp} ctx={ctx} finishOverride={finishOverride} roof={level === topWallLevel ? roof : undefined} cut={cut} elevation={elevation} />
               </Suspense>
             )
           })}
+          {roofVisible && plan.roof && (
+            <group position={[0, roofBase, 0]}>
+              <Roof plan={topPlan} settings={plan.roof} look={look} colors={ctx.colors} />
+            </group>
+          )}
+          {(plan.roofs ?? []).map((r, i) => {
+            if (r.type === 'none') return null
+            const baseLevel = r.baseLevel ?? 0
+            const walls = r.wallIds?.length
+              ? plan.walls.filter((w) => r.wallIds!.includes(w.id))
+              : plan.walls.filter((w) => (w.level ?? 0) === baseLevel)
+            if (!walls.length) return null
+            const displayLevel = r.level ?? baseLevel
+            if (cut !== 'full' || (onlyLevel !== undefined && onlyLevel !== displayLevel)) return null
+            const top = SLAB + baseLevel * floorHeightOf(plan) * M + Math.max(0, ...walls.map((w) => w.height)) * M
+            return (
+              <group key={r.id ?? i} position={[0, top, 0]}>
+                <Roof plan={plan} walls={walls} settings={r} look={look} colors={ctx.colors} />
+              </group>
+            )
+          })}
         </group>
-        {renderFurniture && levels.map((level) => (
+        {renderFurniture && wallLevels.map((level) => (
           <Furniture key={level} plan={filterPlanByLevel(plan, level)} render={renderFurniture} elevation={level * floorHeightOf(plan) * M} />
         ))}
         <Rig view={view} nonce={nonce} target={house} fallback={focus} />

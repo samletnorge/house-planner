@@ -385,10 +385,25 @@ export const paletteSchema = z.looseObject({
   plinth: ralSchema.optional(),
 })
 
+export const roofSchema = z.looseObject({
+  id: id.optional(),
+  type: z.enum(['none', 'mansard', 'hip', 'gable', 'shed']).default('none'),
+  level: z.number().int().nonnegative().optional(),
+  baseLevel: z.number().int().nonnegative().optional(),
+  wallIds: z.array(id).optional(),
+  height: positiveMm.optional(),
+  lowerPitchDeg: z.number().min(10).max(88).optional(),
+  upperPitchDeg: z.number().min(5).max(60).optional(),
+  overhang: mm.nonnegative().optional(),
+  dormers: z.number().int().nonnegative().max(6).optional(),
+})
+
 export const planSchema = z
   .looseObject({
     version: z.literal(1),
     name: z.string().min(1),
+    roof: roofSchema.optional(),
+    roofs: z.array(roofSchema).optional(),
     rev: z.number().int().nonnegative().optional(),
     updatedAt: z.string().optional(),
     author: z.string().optional(),

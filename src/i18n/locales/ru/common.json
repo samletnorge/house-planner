@@ -165,7 +165,8 @@
     "items_few": "{{count}} предмета",
     "items_many": "{{count}} предметов",
     "items_other": "{{count}} предметов",
-    "selSummary": "{{walls}}, {{openings}}, {{items}}"
+    "selSummary": "{{walls}}, {{openings}}, {{items}}",
+    "roofHint": "Кровля настраивается в 3D."
   },
   "demo": {
     "long": "Демо: изменения видят все и сбрасываются каждый час — поставьте себе свою копию",

@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Mansard roof wall: the steep lower slope now covers the second-floor exterior walls (slate cladding), with large dormer windows and a hipped ridge on top.
+- Garage gable roof and a hipped lean-to shed roof for the annex, flush under the main eave (no overhang on the attached side); main mansard lower slope as slate cladding over the second-floor walls.
+- Per-building roofs: main mansard as its own floor level, plus separate hip roofs for the annex and the garage/uthus (`roofs` with `baseLevel`, `level` and `wallIds`).
+- Mansard roof as its own floor level: two-slope hipped roof with eaves overhang, large dormers and a None/Mansard switch in 3D.
 - Profile menu: display name (used as the revision author) and currency for prices (₽ RUB, kr NOK, € EUR, $ USD); only the symbol changes, values are not converted.
 - Multi-storey plans: `level` on walls, furniture, rooms, zones and networks, a floor switcher in the header, per-floor room detection and summary, 3D stacking with `site.floorHeight`, and per-level network layers. Old plans read as level 0; `CLIENT_VERSION` / `MIN_CLIENT_VERSION` raised to 7.
 

@@ -3161,5 +3161,52 @@
     "lines": [],
     "purchases": {},
     "wasteSipPct": 7
-  }
+  },
+  "roof": {
+    "type": "mansard",
+    "height": 4800,
+    "lowerPitchDeg": 75,
+    "upperPitchDeg": 12,
+    "overhang": 300,
+    "dormers": 2,
+    "level": 2,
+    "baseLevel": 0
+  },
+  "roofs": [
+    {
+      "id": "annex",
+      "type": "shed",
+      "baseLevel": 0,
+      "level": 0,
+      "wallIds": [
+        "f1-e1",
+        "f1-wing-n",
+        "f1-wing-e",
+        "f1-wing-s",
+        "f1-wing-w"
+      ],
+      "height": 250,
+      "lowerPitchDeg": 35,
+      "upperPitchDeg": 8,
+      "overhang": 0,
+      "dormers": 0
+    },
+    {
+      "id": "garage",
+      "type": "gable",
+      "baseLevel": 0,
+      "level": 0,
+      "wallIds": [
+        "u-n",
+        "u-e",
+        "u-s",
+        "u-w"
+      ],
+      "height": 1600,
+      "lowerPitchDeg": 30,
+      "upperPitchDeg": 8,
+      "overhang": 200,
+      "dormers": 0
+    }
+  ]
 }

@@ -1,8 +1,22 @@
 {
-  "views": { "top": "Top", "front": "Front" },
-  "looks": { "model": "Mock-up", "real": "Materials" },
-  "cuts": { "full": "Full", "low": "1 m", "floor": "Floor" },
-  "finishes": { "plaster": "Plaster", "timber": "Log imitation", "planken": "Planken" },
+  "views": {
+    "top": "Top",
+    "front": "Front"
+  },
+  "looks": {
+    "model": "Mock-up",
+    "real": "Materials"
+  },
+  "cuts": {
+    "full": "Full",
+    "low": "1 m",
+    "floor": "Floor"
+  },
+  "finishes": {
+    "plaster": "Plaster",
+    "timber": "Log imitation",
+    "planken": "Planken"
+  },
   "presets": {
     "granite": "Grey granite",
     "scandinavia": "Scandinavian",
@@ -16,7 +30,10 @@
     "wallColor": "Wall color",
     "accent": "Accent",
     "presets": "Ready-made combinations",
-    "allFloors": "All floors"
+    "allFloors": "All floors",
+    "roof": "Roof",
+    "roofNone": "No roof",
+    "roofMansard": "Mansard"
   },
   "error": {
     "eyebrow": "3D view",

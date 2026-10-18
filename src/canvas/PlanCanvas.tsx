@@ -42,6 +42,7 @@ import {
   type Plan,
   type Point,
   filterPlanByLevel,
+  roofLevelOf,
 } from '../model'
 import { redo, undo, usePlanStore } from '../store/planStore'
 import { setBusy } from '../storage/busy'
@@ -237,6 +238,7 @@ export function PlanCanvas({ onCursor }: Props) {
   const siteKeyRef = useRef<string | null>(null)
 
   const level = usePlanStore((s) => s.level)
+  const roofLevel = plan ? roofLevelOf(plan) : null
   const full = preview ?? plan
   const shown = useMemo(() => (full ? filterPlanByLevel(full, level) : full), [full, level])
   const hasPlan = !!plan
@@ -1415,6 +1417,7 @@ export function PlanCanvas({ onCursor }: Props) {
         </div>
       )}
       <FloorStack variant="row" />
+      {plan && roofLevel !== null && level === roofLevel && <div className="roof-hint card">{t('canvas.roofHint')}</div>}
       {ready && plan && (
         <ViewControls
           rotation={rot}

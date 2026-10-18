@@ -365,12 +365,22 @@ function offsetPolygon(poly: Point[], d: number): Point[] {
 
 export function slabOutline(walls: Wall[], margin: number): Point[] {
   if (!walls.length) return []
+  const valid = (poly: Point[], base: Point[]) => {
+    if (poly.length < 3) return false
+    const xs = base.map((p) => p.x)
+    const ys = base.map((p) => p.y)
+    const pad = Math.max(2000, (Math.max(...xs) - Math.min(...xs) + Math.max(...ys) - Math.min(...ys)) * 0.2)
+    return poly.every((p) => Number.isFinite(p.x) && Number.isFinite(p.y) && p.x >= Math.min(...xs) - pad && p.x <= Math.max(...xs) + pad && p.y >= Math.min(...ys) - pad && p.y <= Math.max(...ys) + pad)
+  }
   const loop = wallLoop(walls)
   if (loop) {
     const t = Math.max(...walls.map((w) => w.thickness))
-    return offsetPolygon(loop, t / 2 + margin)
+    const out = offsetPolygon(loop, t / 2 + margin)
+    return valid(out, loop) ? out : loop
   }
-  return offsetPolygon(hull(walls.flatMap((w) => wallFootprint(w, walls))), margin)
+  const foot = hull(walls.flatMap((w) => wallFootprint(w, walls)))
+  const out = offsetPolygon(foot, margin)
+  return valid(out, foot) ? out : foot
 }
 
 function touches(p: Point, w: Wall) {
