@@ -248,7 +248,7 @@ function WaterLayerInner({ plan, scale, viewRot, worldPointer, interactive }: Pr
     const current = usePlanStore.getState().plan
     const t = targetAt(e.evt.shiftKey)
     if (!current || !t || mode === 'select') return
-    const step = waterClick(current, draft, t, nextKind, mode, footprints)
+    const step = waterClick(current, draft, t, nextKind, mode, footprints, usePlanStore.getState().level)
     if (step.message) showToast(step.message)
     if (step.plan !== current) commit(step.plan)
     setDraft(step.draft)

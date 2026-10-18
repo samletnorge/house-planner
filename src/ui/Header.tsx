@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { formatMeters } from '../model'
+import { filterPlanByLevel, formatMeters } from '../model'
 import { usePlanStore } from '../store/planStore'
 import { useViewOnly } from '../store/viewOnly'
 import { Badge } from './Badge'
@@ -15,6 +15,8 @@ const meters = (mm: number) => formatMeters(mm)
 export function Header({ section }: { section: SectionId }) {
   const { t } = useTranslation('common')
   const plan = usePlanStore((s) => s.plan)
+  const level = usePlanStore((s) => s.level)
+  const current = plan ? filterPlanByLevel(plan, level) : null
   const narrow = useNarrow()
   const viewOnly = useViewOnly()
   const tabs = sections.map((s) => ({
@@ -26,8 +28,8 @@ export function Header({ section }: { section: SectionId }) {
     ? t('header.subtitle', {
         width: meters(plan.site.width),
         depth: meters(plan.site.depth),
-        walls: t('header.walls', { count: plan.walls.length }),
-        openings: t('header.openings', { count: plan.openings.length }),
+        walls: t('header.walls', { count: current?.walls.length ?? 0 }),
+        openings: t('header.openings', { count: current?.openings.length ?? 0 }),
       })
     : ''
 

@@ -15,7 +15,8 @@
     "facade": "Facade",
     "wallColor": "Wall color",
     "accent": "Accent",
-    "presets": "Ready-made combinations"
+    "presets": "Ready-made combinations",
+    "allFloors": "All floors"
   },
   "error": {
     "eyebrow": "3D view",

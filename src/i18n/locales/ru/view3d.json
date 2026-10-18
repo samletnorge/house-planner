@@ -15,7 +15,8 @@
     "facade": "Фасад",
     "wallColor": "Цвет стен",
     "accent": "Акцент",
-    "presets": "Готовые сочетания"
+    "presets": "Готовые сочетания",
+    "allFloors": "Все этажи"
   },
   "error": {
     "eyebrow": "3D-вид",

@@ -3,7 +3,7 @@ import { t } from '../i18n'
 import { fmtM, labelMap } from './labels'
 
 export type NewWaterNode = Pick<WaterNode, 'x' | 'y' | 'kind'> &
-  Partial<Pick<WaterNode, 'fixture' | 'furnitureId' | 'label' | 'model' | 'source' | 'line' | 'outputs' | 'rotationDeg'>>
+  Partial<Pick<WaterNode, 'level' | 'fixture' | 'furnitureId' | 'label' | 'model' | 'source' | 'line' | 'outputs' | 'rotationDeg'>>
 export type NewWaterPipe = Pick<WaterPipe, 'from' | 'to' | 'line' | 'diameter' | 'location'> & Partial<Pick<WaterPipe, 'material' | 'depth' | 'heated'>>
 
 export const EMPTY_WATER: WaterNetwork = { nodes: [], pipes: [] }

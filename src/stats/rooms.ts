@@ -275,7 +275,17 @@ export function offsetPolygon(poly: Point[], dist: number[]): Point[] {
 function faceGeometry(nodes: Point[], face: HalfEdge[], sign: 1 | -1) {
   const poly = face.map((h) => nodes[h.from])
   const dist = face.map((h) => (sign * h.edge.wall.thickness) / 2)
-  return offsetPolygon(poly, dist)
+  const clear = offsetPolygon(poly, dist)
+  const axisArea = Math.abs(signedArea(poly))
+  const clearArea = Math.abs(signedArea(clear))
+  const finite = clear.every((p) => Number.isFinite(p.x) && Number.isFinite(p.y))
+  const minX = Math.min(...poly.map((p) => p.x)) - 5000
+  const maxX = Math.max(...poly.map((p) => p.x)) + 5000
+  const minY = Math.min(...poly.map((p) => p.y)) - 5000
+  const maxY = Math.max(...poly.map((p) => p.y)) + 5000
+  const inBox = clear.every((p) => p.x >= minX && p.x <= maxX && p.y >= minY && p.y <= maxY)
+  if (!finite || !inBox || clearArea < axisArea * 0.5 || clearArea > axisArea * 1.1) return poly
+  return clear
 }
 
 export function detectRooms(plan: PlanWithRooms, tol = NODE_TOLERANCE_MM): RoomDetection {

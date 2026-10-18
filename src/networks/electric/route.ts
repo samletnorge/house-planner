@@ -69,7 +69,8 @@ function simplify(path: Point[]) {
 export function autoRoute(plan: Plan, circuitId: string): ElectricRoute[] {
   const e = electricOf(plan)
   const panel = e.panel
-  const terms = e.points.filter((p) => p.circuitId === circuitId)
+  const level = e.points.find((p) => p.circuitId === circuitId)?.level ?? 0
+  const terms = e.points.filter((p) => p.circuitId === circuitId && (p.level ?? 0) === level)
   if (!panel || !terms.length) return []
 
   const g = makeGraph()
@@ -148,7 +149,7 @@ export function autoRoute(plan: Plan, circuitId: string): ElectricRoute[] {
       )
       const a = g.nodes[from]
       const b = g.nodes[t]
-      routes.push({ circuitId, path: simplify([a, { x: b.x, y: a.y }, b]) })
+      routes.push({ circuitId, level, path: simplify([a, { x: b.x, y: a.y }, b]) })
       tree.add(t)
       left.delete(t)
       continue
@@ -160,7 +161,7 @@ export function autoRoute(plan: Plan, circuitId: string): ElectricRoute[] {
       left.delete(c)
     })
     const path = simplify(chain.map((c) => g.nodes[c]))
-    if (path.length >= 2) routes.push({ circuitId, path })
+    if (path.length >= 2) routes.push({ circuitId, level, path })
   }
   return routes
 }

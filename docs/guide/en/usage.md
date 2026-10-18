@@ -56,6 +56,10 @@ The plan is drawn over satellite imagery using `site.geo`. "Boundary from GeoJSO
 
 One A4 sheet: wall materials, doors, windows and gates, network groups, and manual lines. Prices come from `data/catalog.json` or from the plan's own materials. Tick "Purchased" to mark a line as bought and record the actual price. "Download CSV" exports a semicolon-separated file that opens in Excel. Print with the browser (`⌘P` / `Ctrl+P`): the sheet is laid out for A4. "Build Petrovich cart" builds carts on petrovich.ru, see the [FAQ](faq.md#how-does-the-petrovich-cart-work).
 
+## Floors
+
+The header switcher (`1`, `2`, `+`) changes the floor. Only the current floor is drawn and editable; room detection, snapping and the summary follow it. `+` adds an empty floor. The 3D view stacks floors by `site.floorHeight` (3 m by default); "Current floor" shows only the selected one.
+
 ## Versions and snapshots
 
 Every save is a numbered revision on the server. "⋯" → "Versions" shows two lists: "Saved" (named snapshots) and "All changes" (every revision with author and time). Create a snapshot with a name, restore any snapshot or revision: the restore is written as a new revision, nothing is lost.

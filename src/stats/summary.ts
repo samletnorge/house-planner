@@ -149,7 +149,7 @@ function streetLine(street: unknown, boundary: Point[]): { side?: number; line?:
 function classify(b: DetectedBuilding, gates: number, largestId: string): BuildingKind {
   const kinds = b.rooms.map((r) => r.kind).filter(Boolean)
   if (kinds.includes('garage')) return kinds.some((k) => LIVING_KINDS.includes(k!)) ? 'house' : 'garage'
-  if (kinds.some((k) => k && k !== 'storage' && k !== 'tech')) return 'house'
+  if (kinds.some((k) => k && k !== 'storage' && k !== 'tech' && k !== 'hall')) return 'house'
   if (b.id === largestId) return 'house'
   return gates > 0 ? 'garage' : 'outbuilding'
 }

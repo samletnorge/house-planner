@@ -4,7 +4,7 @@ require_once __DIR__ . '/_i18n.php';
 require_once __DIR__ . '/_demo.php';
 
 const PLAN_MAX_BYTES = 2097152;
-const MIN_CLIENT_VERSION = 2;
+const MIN_CLIENT_VERSION = 7;
 const PLAN_JSON_FLAGS = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT;
 const AUTH_COOKIE = 'hauth';
 

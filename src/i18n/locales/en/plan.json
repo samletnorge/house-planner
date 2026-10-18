@@ -241,6 +241,8 @@
     "footprint": "Footprint",
     "height": "Height",
     "allHouses": "All houses",
+    "wholeHouse": "Whole house",
+    "floor": "Floor {{level}}",
     "roomsSection": "Rooms",
     "lowLight": "not enough daylight",
     "area": "Area",

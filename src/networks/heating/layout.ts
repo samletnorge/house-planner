@@ -137,10 +137,12 @@ export function autoLayout(plan: Plan): LayoutResult {
   } else notes.push(t('networks:heating.layout.collectorKept'))
   const fixed = fixedRects(plan)
   const pipe = prev.loops[0]?.pipe ?? DEFAULT_PIPE
+  const loopLevel = plan.walls[0]?.level ?? 0
   const make = (room: HeatRoom, poly: Point[], step: HeatingStep, edge: boolean, suffix: string): HeatingLoop => {
     const excluded = intersect([poly], fixed)
     return {
       id: 'hl',
+      level: loopLevel,
       ...(room.labelId ? { roomId: room.labelId } : {}),
       roomName: `${room.name}${edge ? t('networks:heating.layout.edgeSuffix') : ''}${suffix}`,
       polygon: poly,
@@ -204,7 +206,7 @@ export function autoLayout(plan: Plan): LayoutResult {
     byRoom.set(room, genRoom(room, 'auto') ?? [])
   }
   const keyOf = (r: HeatRoom) => r.labelId ?? r.face.id
-  const collectorAt: HeatingCollector = { ...(prev.collector ?? {}), id: prev.collector?.id ?? 'collector', x: at.x, y: at.y, outputs: 1 }
+  const collectorAt: HeatingCollector = { ...(prev.collector ?? {}), id: prev.collector?.id ?? 'collector', level: plan.walls[0]?.level ?? 0, x: at.x, y: at.y, outputs: 1 }
   const evaluate = (loops: HeatingLoop[]) => computeHeating({ ...plan, networks: { ...plan.networks, heating: { ...prev, collector: collectorAt, loops } } })
   const flat = () => [...byRoom.values()].flat()
   const short = evaluate(flat()).rooms.filter((b) => !b.ok).map((b) => b.key)

@@ -249,6 +249,8 @@
     "footprint": "Пятно застройки",
     "height": "Высота",
     "allHouses": "Все дома",
+    "wholeHouse": "Весь дом",
+    "floor": "Этаж {{level}}",
     "roomsSection": "Помещения",
     "lowLight": "мало света",
     "area": "Площадь",

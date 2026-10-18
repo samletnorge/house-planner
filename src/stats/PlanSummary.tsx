@@ -1,8 +1,9 @@
 import { useMemo, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { t, numberFormat } from '../i18n'
-import { formatMoney, formatNumber } from '../model'
+import { filterPlanByLevel, formatMoney, formatNumber, levelsOf } from '../model'
 import type { PlanWithRooms } from './rooms'
+import { usePlanStore } from '../store/planStore'
 import { computePlanSummary, type BuildingSummary, type Clearance } from './summary'
 import './stats.css'
 
@@ -59,7 +60,26 @@ function lowerName(b: BuildingSummary) {
 
 export function PlanSummary({ plan }: { plan: PlanWithRooms }) {
   const { t } = useTranslation('plan')
-  const s = useMemo(() => computePlanSummary(plan), [plan])
+  const level = usePlanStore((st) => st.level)
+  const levelPlan = useMemo(() => filterPlanByLevel(plan, level), [plan, level])
+  const s = useMemo(() => computePlanSummary(levelPlan), [levelPlan])
+  const levels = useMemo(() => levelsOf(plan), [plan])
+  const whole = useMemo(
+    () =>
+      levels.length < 2
+        ? null
+        : levels.map((l) => computePlanSummary(filterPlanByLevel(plan, l))).reduce(
+            (a, x) => ({
+              totalAreaM2: a.totalAreaM2 + x.totals.totalAreaM2,
+              livingAreaM2: a.livingAreaM2 + x.totals.livingAreaM2,
+              livingRooms: a.livingRooms + x.totals.livingRooms,
+              bedrooms: a.bedrooms + x.totals.bedrooms,
+              baths: a.baths + x.totals.baths,
+            }),
+            { totalAreaM2: 0, livingAreaM2: 0, livingRooms: 0, bedrooms: 0, baths: 0 },
+          ),
+    [plan, levels],
+  )
   const { totals, site } = s
   const homes = s.buildings.filter((b) => b.kind === 'house')
   const others = s.buildings.filter((b) => b.kind !== 'house')
@@ -76,6 +96,16 @@ export function PlanSummary({ plan }: { plan: PlanWithRooms }) {
 
   return (
     <div className="plan-stats">
+      <p className="plan-stats__floor">{t('summary.floor', { level: level + 1 })}</p>
+      {whole && (
+        <Section title={t('summary.wholeHouse')}>
+          <Row label={t('summary.totalArea')}>{m2(whole.totalAreaM2)}</Row>
+          <Row label={t('summary.livingArea')}>{m2(whole.livingAreaM2)}</Row>
+          <Row label={t('summary.rooms')}>{whole.livingRooms}</Row>
+          <Row label={t('summary.bedrooms')}>{whole.bedrooms}</Row>
+          <Row label={t('summary.baths')}>{whole.baths}</Row>
+        </Section>
+      )}
       {homes.map((b) => (
         <Section key={b.id} title={b.name}>
           <Row label={t('summary.totalArea')}>{m2(b.totalAreaM2)}</Row>

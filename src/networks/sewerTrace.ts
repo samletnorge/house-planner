@@ -5,18 +5,18 @@ import type { NextKind } from './sewerStore'
 
 export type TraceStep = { plan: Plan; draft: string | null; last: string | null }
 
-function nodeFromTarget(plan: Plan, t: SewerTarget, nextKind: NextKind): { plan: Plan; id: string; end: boolean } {
+function nodeFromTarget(plan: Plan, t: SewerTarget, nextKind: NextKind, level = 0): { plan: Plan; id: string; end: boolean } {
   if (t.kind === 'node') return { plan, id: t.id, end: true }
   if (t.kind === 'pipe') {
     const r = splitPipe(plan, t.id, t.point)
     if (r) return { ...r, end: true }
   }
   if (t.kind === 'fixture') {
-    const r = addNode(plan, { x: t.point.x, y: t.point.y, kind: 'fixture', fixture: FURNITURE_FIXTURE[t.furniture.type], furnitureId: t.furniture.id })
+    const r = addNode(plan, { x: t.point.x, y: t.point.y, level, kind: 'fixture', fixture: FURNITURE_FIXTURE[t.furniture.type], furnitureId: t.furniture.id })
     return { ...r, end: true }
   }
   const extra: Partial<SewerNode> = nextKind === 'septic' ? { w: DEFAULT_SEPTIC.w, d: DEFAULT_SEPTIC.d, rotationDeg: 0 } : {}
-  const r = addNode(plan, { x: t.point.x, y: t.point.y, kind: nextKind, ...extra })
+  const r = addNode(plan, { x: t.point.x, y: t.point.y, level, kind: nextKind, ...extra })
   return { ...r, end: nextKind === 'septic' }
 }
 
@@ -51,9 +51,9 @@ export function connect(plan: Plan, fromId: string, toId: string, footprints: Po
   return addPipe(plan, pipeSpec(plan, fromId, toId, location)).plan
 }
 
-export function traceClick(plan: Plan, draft: string | null, t: SewerTarget, nextKind: NextKind, footprints: Point[][]): TraceStep {
+export function traceClick(plan: Plan, draft: string | null, t: SewerTarget, nextKind: NextKind, footprints: Point[][], level = 0): TraceStep {
   if (draft && t.kind === 'node' && t.id === draft) return { plan, draft: null, last: draft }
-  const r = nodeFromTarget(plan, t, draft ? nextKind : t.kind === 'point' ? nextKind : 'junction')
+  const r = nodeFromTarget(plan, t, draft ? nextKind : t.kind === 'point' ? nextKind : 'junction', level)
   if (!draft) return { plan: r.plan, draft: r.id, last: r.id }
   const next = connect(r.plan, draft, r.id, footprints)
   return { plan: next, draft: r.end ? null : r.id, last: r.id }

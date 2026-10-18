@@ -230,13 +230,13 @@ export function openingGaps(plan: Plan, wallId: string, offset: number, width: n
 
 export function addFurniture(
   plan: Plan,
-  item: Pick<Furniture, 'type' | 'x' | 'y' | 'rotationDeg'> & Partial<Pick<Furniture, 'w' | 'd' | 'h' | 'color'>>,
+  item: Pick<Furniture, 'type' | 'x' | 'y' | 'rotationDeg'> & Partial<Pick<Furniture, 'level' | 'w' | 'd' | 'h' | 'color'>>,
 ): { plan: Plan; id: string } {
   const used = new Set(plan.furniture.map((f) => f.id))
   let n = plan.furniture.length + 1
   while (used.has(`f${n}`)) n += 1
   const id = `f${n}`
-  const f: Furniture = { ...item, id }
+  const f: Furniture = { ...item, level: item.level ?? 0, id }
   return { plan: { ...plan, furniture: [...plan.furniture, f] }, id }
 }
 

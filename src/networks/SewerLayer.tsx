@@ -228,7 +228,7 @@ function SewerLayerInner({ plan, scale, viewRot, worldPointer, interactive }: Pr
     const current = usePlanStore.getState().plan
     const t = targetAt(e.evt.shiftKey)
     if (!current || !t) return
-    const step = traceClick(current, draft, t, nextKind, footprints)
+    const step = traceClick(current, draft, t, nextKind, footprints, usePlanStore.getState().level)
     if (step.plan !== current) commit(step.plan)
     setDraft(step.draft)
   }

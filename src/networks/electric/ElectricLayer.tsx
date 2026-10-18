@@ -286,7 +286,7 @@ function ElectricLayerInner({ plan, scale, viewRot, worldPointer, interactive }:
     const ui = useElectricUi.getState()
     if (tool === 'panel') {
       const prev = electricOf(current).panel
-      commit(setPanel(current, { ...(prev ?? {}), id: prev?.id ?? 'panel', x: g.point.x, y: g.point.y, ...(g.wallId ? { wallId: g.wallId } : {}) }))
+      commit(setPanel(current, { ...(prev ?? {}), id: prev?.id ?? 'panel', level: usePlanStore.getState().level, x: g.point.x, y: g.point.y, ...(g.wallId ? { wallId: g.wallId } : {}) }))
       ui.setTool(null)
       ui.selectPanel(true)
       return
@@ -296,6 +296,7 @@ function ElectricLayerInner({ plan, scale, viewRot, worldPointer, interactive }:
     const height = kind === 'light' ? ceilingOf(current) : kind === 'junction' ? ceilingOf(current, g.wallId) - 150 : defaultHeight[kind]
     const res = addPoint(current, {
       kind,
+      level: usePlanStore.getState().level,
       x: g.point.x,
       y: g.point.y,
       height,

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Multi-storey plans: `level` on walls, furniture, rooms, zones and networks, a floor switcher in the header, per-floor room detection and summary, 3D stacking with `site.floorHeight`, and per-level network layers. Old plans read as level 0; `CLIENT_VERSION` / `MIN_CLIENT_VERSION` raised to 7.
+
 ### Changed
 
 - The UI defaults to English; the browser and system languages are no longer used. Russian is picked only explicitly via "⋯" → Language or `?lang=ru`; the choice is stored under `house-lang` (localStorage and cookie), old auto-cached `lang` / `i18nextLng` values are discarded. PHP messages follow the `house-lang` cookie, otherwise English.

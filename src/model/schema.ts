@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const CLIENT_VERSION = 6
+export const CLIENT_VERSION = 7
 
 const mm = z.number().finite()
 const positiveMm = mm.positive()
@@ -48,6 +48,7 @@ export const wallSchema = z.looseObject({
   id,
   a: pointSchema,
   b: pointSchema,
+  level: z.number().int().nonnegative().default(0),
   thickness: positiveMm,
   height: positiveMm,
   materialId: id.optional(),
@@ -70,6 +71,7 @@ export const openingSchema = z.looseObject({
 export const furnitureSchema = z.looseObject({
   id,
   type: z.string().min(1),
+  level: z.number().int().nonnegative().default(0),
   x: mm,
   y: mm,
   rotationDeg: z.number().finite().default(0),
@@ -83,6 +85,7 @@ export const furnitureSchema = z.looseObject({
 export const roomLabelSchema = z.looseObject({
   id,
   name: z.string().min(1),
+  level: z.number().int().nonnegative().default(0),
   x: mm,
   y: mm,
   kind: z.enum(['living', 'bedroom', 'kitchen', 'bath', 'tech', 'hall', 'storage', 'garage']).optional(),
@@ -91,6 +94,7 @@ export const roomLabelSchema = z.looseObject({
 export const zoneSchema = z.looseObject({
   id,
   name: z.string().min(1),
+  level: z.number().int().nonnegative().optional(),
   kind: z.enum(['fill', 'lawn', 'paving', 'other']),
   polygon: z.array(pointSchema).min(3),
   locked: z.boolean().optional(),
@@ -100,6 +104,7 @@ export const siteSchema = z.looseObject({
   convention: z.string().optional(),
   width: positiveMm,
   depth: positiveMm,
+  floorHeight: positiveMm.optional(),
   geo: z
     .looseObject({
       lat: z.number().min(-90).max(90),
@@ -165,6 +170,7 @@ export const sewerNodeSchema = z.looseObject({
   id,
   x: mm,
   y: mm,
+  level: z.number().int().nonnegative().default(0),
   kind: sewerNodeKindSchema,
   fixture: sewerFixtureSchema.optional(),
   label: z.string().optional(),
@@ -228,6 +234,7 @@ export const electricPointSchema = z.looseObject({
   kind: electricPointKindSchema,
   x: mm,
   y: mm,
+  level: z.number().int().nonnegative().default(0),
   height: mm.nonnegative(),
   wallId: id.optional(),
   circuitId: id.optional(),
@@ -252,12 +259,14 @@ export const electricPanelSchema = z.looseObject({
   id,
   x: mm,
   y: mm,
+  level: z.number().int().nonnegative().default(0),
   wallId: id.optional(),
   modules: z.number().int().positive().optional(),
 })
 
 export const electricRouteSchema = z.looseObject({
   circuitId: id,
+  level: z.number().int().nonnegative().default(0),
   path: z.array(pointSchema).min(2),
 })
 
@@ -273,6 +282,7 @@ export const waterNodeSchema = z.looseObject({
   id,
   x: mm,
   y: mm,
+  level: z.number().int().nonnegative().default(0),
   kind: z.enum(['source', 'entry', 'pump', 'filter', 'boiler', 'collector', 'fixture', 'junction', 'tap_outdoor']),
   fixture: sewerFixtureSchema.optional(),
   furnitureId: z.string().optional(),
@@ -306,6 +316,7 @@ export const heatingStepSchema = z.union([z.literal(100), z.literal(150), z.lite
 
 export const heatingLoopSchema = z.looseObject({
   id,
+  level: z.number().int().nonnegative().default(0),
   roomId: z.string().optional(),
   roomName: z.string().optional(),
   polygon: z.array(pointSchema).min(3),
@@ -333,6 +344,7 @@ export const heatingCollectorSchema = z.looseObject({
   id,
   x: mm,
   y: mm,
+  level: z.number().int().nonnegative().default(0),
   outputs: z.number().int().positive(),
   label: z.string().optional(),
 })

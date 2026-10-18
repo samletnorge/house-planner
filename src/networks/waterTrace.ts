@@ -7,18 +7,18 @@ import { t } from '../i18n'
 
 export type WaterStep = { plan: Plan; draft: string | null; message?: string }
 
-function nodeFromTarget(plan: Plan, t: SewerTarget, nextKind: WaterNextKind, line: WaterLine) {
+function nodeFromTarget(plan: Plan, t: SewerTarget, nextKind: WaterNextKind, line: WaterLine, level = 0) {
   if (t.kind === 'node') return { plan, id: t.id, end: true }
   if (t.kind === 'pipe') {
     const r = splitWaterPipe(plan, t.id, t.point)
     if (r) return { ...r, end: true }
   }
   if (t.kind === 'fixture') {
-    const r = addWaterNode(plan, { x: t.point.x, y: t.point.y, kind: 'fixture', fixture: FURNITURE_FIXTURE[t.furniture.type], furnitureId: t.furniture.id })
+    const r = addWaterNode(plan, { x: t.point.x, y: t.point.y, level, kind: 'fixture', fixture: FURNITURE_FIXTURE[t.furniture.type], furnitureId: t.furniture.id })
     return { ...r, end: true }
   }
   const extra = nextKind === 'collector' || nextKind === 'boiler' ? { line: nextKind === 'boiler' ? ('hot' as const) : line === 'recirc' ? ('hot' as const) : line } : {}
-  const r = addWaterNode(plan, { x: t.point.x, y: t.point.y, kind: nextKind, ...extra })
+  const r = addWaterNode(plan, { x: t.point.x, y: t.point.y, level, kind: nextKind, ...extra })
   return { ...r, end: nextKind === 'tap_outdoor' }
 }
 
@@ -76,18 +76,18 @@ export function radialToFixture(plan: Plan, fixtureId: string, line: WaterLine):
   return { plan: next, draft: null }
 }
 
-export function waterClick(plan: Plan, draft: string | null, t: SewerTarget, nextKind: WaterNextKind, line: WaterLine, footprints: Point[][]): WaterStep {
+export function waterClick(plan: Plan, draft: string | null, t: SewerTarget, nextKind: WaterNextKind, line: WaterLine, footprints: Point[][], level = 0): WaterStep {
   const w = waterOf(plan)
   if (draft && t.kind === 'node' && t.id === draft) return { plan, draft: null }
   if (!draft) {
     const fixtureNode = t.kind === 'node' ? wNode(w, t.id) : undefined
     if (t.kind === 'fixture' || fixtureNode?.kind === 'fixture') {
-      const r = nodeFromTarget(plan, t, nextKind, line)
+      const r = nodeFromTarget(plan, t, nextKind, line, level)
       return radialToFixture(r.plan, r.id, line)
     }
-    const r = nodeFromTarget(plan, t, nextKind, line)
+    const r = nodeFromTarget(plan, t, nextKind, line, level)
     return { plan: r.plan, draft: r.id }
   }
-  const r = nodeFromTarget(plan, t, nextKind, line)
+  const r = nodeFromTarget(plan, t, nextKind, line, level)
   return { plan: connectWater(r.plan, draft, r.id, line, footprints), draft: r.end ? null : r.id }
 }

@@ -3,7 +3,7 @@ import { resolveFurniture } from '../furniture/catalog'
 import { labelMap } from './labels'
 
 export type NewSewerNode = Pick<SewerNode, 'x' | 'y' | 'kind'> &
-  Partial<Pick<SewerNode, 'fixture' | 'label' | 'furnitureId' | 'height' | 'w' | 'd' | 'rotationDeg' | 'model' | 'depth'>>
+  Partial<Pick<SewerNode, 'level' | 'fixture' | 'label' | 'furnitureId' | 'height' | 'w' | 'd' | 'rotationDeg' | 'model' | 'depth'>>
 export type NewSewerPipe = Pick<SewerPipe, 'from' | 'to' | 'diameter' | 'location'> & Partial<Pick<SewerPipe, 'slope' | 'depth' | 'material'>>
 
 export const EMPTY_SEWER: SewerNetwork = { nodes: [], pipes: [] }

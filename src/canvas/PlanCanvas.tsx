@@ -41,6 +41,7 @@ import {
   type EndRef,
   type Plan,
   type Point,
+  filterPlanByLevel,
 } from '../model'
 import { redo, undo, usePlanStore } from '../store/planStore'
 import { setBusy } from '../storage/busy'
@@ -55,6 +56,7 @@ import { detectRooms, pointInPolygon, type RoomFace } from '../stats/rooms'
 import { showToast } from '../ui/Toast'
 import { useUnderlayAlign, type UnderlayAlign } from '../map/useUnderlayAlign'
 import { Grid } from './Grid'
+import { FloorStack } from '../ui/FloorStack'
 import { FurnitureRotateHandle, Handles, OpeningHandles, type HandleKind } from './Handles'
 import { labelAnchor, LengthLabel } from './LengthLabel'
 import { Dimensions } from './Dimensions'
@@ -218,7 +220,8 @@ export function PlanCanvas({ onCursor }: Props) {
     setZoneDraft([])
     if (!current || pts.length < 3) return
     const res = addZone(current, pts)
-    commit(res.plan)
+    const lvl = usePlanStore.getState().level
+    commit({ ...res.plan, site: { ...res.plan.site, zones: (res.plan.site.zones ?? []).map((z) => (z.id === res.id ? { ...z, level: lvl } : z)) } })
     setTool('select')
     selectZone(res.id)
   }
@@ -233,7 +236,9 @@ export function PlanCanvas({ onCursor }: Props) {
   const fittedRef = useRef(-1)
   const siteKeyRef = useRef<string | null>(null)
 
-  const shown = preview ?? plan
+  const level = usePlanStore((s) => s.level)
+  const full = preview ?? plan
+  const shown = useMemo(() => (full ? filterPlanByLevel(full, level) : full), [full, level])
   const hasPlan = !!plan
   const ready = size.width > 0 && size.height > 0
 
@@ -306,10 +311,16 @@ export function PlanCanvas({ onCursor }: Props) {
         if (!st.plan) return
         e.preventDefault()
         st.setTool('select')
-        st.setGroup(withoutLocked(selectAll(st.plan), layerLocks()))
+        st.setGroup(withoutLocked(selectAll(filterPlanByLevel(st.plan, st.level)), layerLocks()))
         return
       }
       if (mod) return
+      if (e.key === 'PageUp' || e.key === 'PageDown') {
+        const st = usePlanStore.getState()
+        e.preventDefault()
+        st.setLevel(st.level + (e.key === 'PageUp' ? 1 : -1))
+        return
+      }
       const state = usePlanStore.getState()
       if (isViewOnly()) {
         if (e.key === 'm' || e.key === 'ь') setTool(state.tool === 'measure' ? 'select' : 'measure')
@@ -599,7 +610,8 @@ export function PlanCanvas({ onCursor }: Props) {
       onCursor?.(raw, cam.scale)
       return
     }
-    const walls = usePlanStore.getState().plan?.walls ?? []
+    const cp = usePlanStore.getState().plan
+    const walls = cp ? filterPlanByLevel(cp, usePlanStore.getState().level).walls : []
     if (tool === 'zone') {
       const current = usePlanStore.getState().plan
       if (current) setZoneCursor(snapZonePoint(raw, current, cam.scale, zoneDraft.at(-1) ?? null, shift))
@@ -645,9 +657,10 @@ export function PlanCanvas({ onCursor }: Props) {
   function ghostAt(raw: Point): Ghost | null {
     const current = usePlanStore.getState().plan
     if (!current) return null
+    const levelWalls = filterPlanByLevel(current, usePlanStore.getState().level).walls
     let best: Wall | null = null
     let bestD = Infinity
-    for (const w of current.walls) {
+    for (const w of levelWalls) {
       const d = distanceToSegment(raw, w.a, w.b)
       if (d <= Math.max(w.thickness / 2, 14 / cam.scale) && d < bestD) {
         best = w
@@ -692,7 +705,7 @@ export function PlanCanvas({ onCursor }: Props) {
     const current = usePlanStore.getState().plan
     if (!current || Math.hypot(marquee.x1 - marquee.x0, marquee.y1 - marquee.y0) < DRAG_THRESHOLD_PX) return
     const st = usePlanStore.getState()
-    const hit = withoutLocked(rectSel(current, cam, marquee), layerLocks())
+    const hit = withoutLocked(rectSel(filterPlanByLevel(current, usePlanStore.getState().level), cam, marquee), layerLocks())
     st.setGroup(marquee.add && st.group ? mergeSel(st.group, hit) : hit)
   }
 
@@ -837,7 +850,7 @@ export function PlanCanvas({ onCursor }: Props) {
     }
     const raw = worldPointer()
     if (!raw || !plan) return
-    const snap = snapPoint(raw, plan.walls, cam.scale, draftStart, e.evt.shiftKey || shiftDown)
+    const snap = snapPoint(raw, filterPlanByLevel(plan, level).walls, cam.scale, draftStart, e.evt.shiftKey || shiftDown)
     if (!draftStart) {
       setDraftStart(snap.point)
       return
@@ -863,11 +876,11 @@ export function PlanCanvas({ onCursor }: Props) {
   const site = plan ? sitePolygon(plan.site) : []
   const cursorPoint = cursor?.point ?? null
   const wallsCenter = useMemo(() => {
-    const walls = plan?.walls ?? []
+    const walls = shown?.walls ?? []
     if (walls.length === 0) return undefined
     const sum = walls.reduce((acc, w) => ({ x: acc.x + w.a.x + w.b.x, y: acc.y + w.a.y + w.b.y }), { x: 0, y: 0 })
     return { x: sum.x / (walls.length * 2), y: sum.y / (walls.length * 2) }
-  }, [plan?.walls])
+  }, [shown?.walls])
 
   const selectedWall = shown?.walls.find((w) => w.id === selectedWallId)
   const movingIds = useMemo(() => {
@@ -889,7 +902,7 @@ export function PlanCanvas({ onCursor }: Props) {
     }
     return len / 2
   }
-  const targets = useMemo(() => (plan ? measureTargets(plan) : { points: [], segments: [] }), [plan])
+  const targets = useMemo(() => (shown ? measureTargets(shown) : { points: [], segments: [] }), [shown])
   const detection = useMemo(() => detectRooms(shown ?? NO_PLAN), [shown])
   const findRoomAt = (p: Point): RoomFace | null => {
     for (const b of detection.buildings) for (const r of b.rooms) if (pointInPolygon(p, r.clearPolygon)) return r
@@ -916,7 +929,7 @@ export function PlanCanvas({ onCursor }: Props) {
     while (used.has(`r${n}`)) n += 1
     const id = `r${n}`
     const name = t('canvas.defaultRoomName')
-    commit({ ...plan, rooms: [...rooms, { id, name, x: snapOffset(at.x), y: snapOffset(at.y) }] })
+    commit({ ...plan, rooms: [...rooms, { id, name, level: usePlanStore.getState().level, x: snapOffset(at.x), y: snapOffset(at.y) }] })
     setRoomEdit({ id, value: name })
     setCtxMenu(null)
   }
@@ -925,7 +938,7 @@ export function PlanCanvas({ onCursor }: Props) {
   const buildingWallAt = (at: Point): string | null => {
     const b = detection.buildings.find((x) => pointInPolygon(at, x.footprint))
     if (b?.walls[0]) return b.walls[0].id
-    return plan?.walls.find((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale))?.id ?? null
+    return shown?.walls.find((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale))?.id ?? null
   }
   const groupPolygons = group && shown ? groupPolys(shown, detection.buildings, group) : []
   const groupCorners = groupPolygons.flat()
@@ -962,7 +975,7 @@ export function PlanCanvas({ onCursor }: Props) {
         if (tool !== 'select' || viewOnly || !locks.walls || !stage || !plan) return
         stage.setPointersPositions(e.nativeEvent)
         const at = stage.getRelativePointerPosition()
-        if (at && plan.walls.some((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale)))
+        if (at && shown?.walls.some((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale)))
           showToast(t('canvas.moveHouseHint'))
       }}
       onDragOver={(e) => {
@@ -985,7 +998,8 @@ export function PlanCanvas({ onCursor }: Props) {
         const p = stage.getRelativePointerPosition()
         if (!p) return
         const res = addFurniture(current, { type, x: snapOffset(p.x), y: snapOffset(p.y), rotationDeg: 0 })
-        commit(res.plan)
+        const lvl = usePlanStore.getState().level
+        commit({ ...res.plan, furniture: res.plan.furniture.map((f) => (f.id === res.id ? { ...f, level: lvl } : f)) })
         setTool('select')
         selectFurniture(res.id)
       }}
@@ -1039,7 +1053,7 @@ export function PlanCanvas({ onCursor }: Props) {
             }
             if (tool === 'select' && !viewOnly && !aligning && e.target === stageRef.current && e.evt.button === 0 && layers.walls && locks.walls) {
               const at = worldPointer()
-              if (at && plan?.walls.some((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale))) lockedToast('walls')
+              if (at && shown?.walls.some((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale))) lockedToast('walls')
             }
             if (tool !== 'select' || viewOnly || aligning || e.target !== stageRef.current || e.evt.button !== 0 || !e.evt.shiftKey) return
             const sp = screenPointer()
@@ -1062,7 +1076,7 @@ export function PlanCanvas({ onCursor }: Props) {
             setDraftStart(null)
             if (tool !== 'select' || viewOnly) return
             const at = worldPointer()
-            const hitWall = at && plan?.walls.find((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale))
+            const hitWall = at && shown?.walls.find((w) => distanceToSegment(at, w.a, w.b) <= Math.max(w.thickness / 2, 6 / cam.scale))
             if (hitWall && plan && locks.walls) return
             if (hitWall && plan) {
               usePlanStore.getState().setGroup(buildingSel(plan, hitWall.id))
@@ -1400,6 +1414,7 @@ export function PlanCanvas({ onCursor }: Props) {
           <underlayMods.Controls align={align} />
         </div>
       )}
+      <FloorStack variant="row" />
       {ready && plan && (
         <ViewControls
           rotation={rot}

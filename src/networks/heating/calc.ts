@@ -1,5 +1,6 @@
 import type { HeatingLoop, Plan } from '../../model'
 import { detectRooms } from '../../stats/rooms'
+import { filterPlanByLevel, levelsOf } from '../../model'
 import { fmtNum, t } from '../../i18n'
 import { zoneAreaM2 } from './geometry'
 import { LOOP_HARD_MAX_M, LOOP_MAX_M, PIPE_RESERVE, centroid, heatingOf, paramsOf, pathLength, zonesOf, type LoopZone } from './model'
@@ -123,7 +124,14 @@ function roomFor(rooms: HeatRoom[], zone: LoopZone) {
 export function computeHeating(plan: Plan): HeatingCalc {
   const h = heatingOf(plan)
   const p = paramsOf(h)
-  const rooms = heatRooms(plan, detectRooms(plan))
+  const levels = levelsOf(plan)
+  const roomSets = new Map<number, ReturnType<typeof heatRooms>>()
+  for (const level of levels.length ? levels : [0]) {
+    const lp = filterPlanByLevel(plan, level)
+    roomSets.set(level, heatRooms(lp, detectRooms(lp)))
+  }
+  const rooms = [...roomSets.values()].flat()
+  const roomsOf = (level: number) => roomSets.get(level) ?? roomSets.get(0) ?? []
   const warnings: HeatingWarning[] = []
   const deltaT = p.supplyT - p.returnT
   const screedCover = p.screedMm - 20
@@ -133,8 +141,9 @@ export function computeHeating(plan: Plan): HeatingCalc {
   const byRoom = new Map<string, RoomBalance>()
 
   const loops: LoopCalc[] = active.map((loop) => {
+    const loopRooms = roomsOf(loop.level ?? 0)
     const zones = zonesOf(loop).map((z, zi) => {
-      const room = roomFor(rooms, z)
+      const room = roomFor(loopRooms, z)
       const cls = room?.cls ?? classify(z.roomName ?? '')
       const cover = room?.cover ?? coverOf(cls)
       const ti = room?.tInside ?? (cls === 'wet' ? 24 : 20)

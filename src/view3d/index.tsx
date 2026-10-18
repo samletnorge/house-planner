@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next'
 import type { Palette, Plan } from '../model'
 import { FurnitureModel } from '../furniture'
 import { useViewOnly } from '../store/viewOnly'
+import { usePlanStore } from '../store/planStore'
 import { Button, CanvasToolbar, Segmented, ToolbarSeparator } from '../ui'
+import { FloorStack } from '../ui/FloorStack'
 import { ColorPicker } from './ColorPicker'
 import { SceneErrorBoundary } from './ErrorBoundary'
 import { DEFAULT_ACCENT, DEFAULT_WALLS } from './palette'
@@ -35,6 +37,8 @@ export default function View3DSection({ plan, onChange }: Props) {
   const [view, setView] = useState<View3D>('iso')
   const [look, setLook] = useState<Look>('model')
   const viewOnly = useViewOnly()
+  const level = usePlanStore((s) => s.level)
+  const [allFloors, setAllFloors] = useState(false)
   const [grid, setGrid] = useState(true)
   const [cut, setCutState] = useState<WallCut>(readCut)
   const setCut = (v: WallCut) => {
@@ -68,6 +72,7 @@ export default function View3DSection({ plan, onChange }: Props) {
 
   return (
     <div className="view3d">
+      <FloorStack onSelect={() => setAllFloors(false)} />
       <SceneErrorBoundary resetKey={plan}>
         <Scene3D
           plan={shown}
@@ -77,6 +82,7 @@ export default function View3DSection({ plan, onChange }: Props) {
           grid={grid}
           finishOverride={finishOverride}
           cut={cut}
+          onlyLevel={allFloors ? undefined : level}
           renderFurniture={(item) => <FurnitureModel item={item} placed={false} look={look} />}
         />
       </SceneErrorBoundary>
@@ -89,6 +95,9 @@ export default function View3DSection({ plan, onChange }: Props) {
         <ToolbarSeparator />
         <Button size="sm" variant="ghost" pressed={grid} onClick={() => setGrid((g) => !g)}>
           {t('toolbar.grid')}
+        </Button>
+        <Button size="sm" variant="ghost" pressed={allFloors} onClick={() => setAllFloors((v) => !v)}>
+          {t('toolbar.allFloors')}
         </Button>
       </CanvasToolbar>
       {currentFinish && !viewOnly && (

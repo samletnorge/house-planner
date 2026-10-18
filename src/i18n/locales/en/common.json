@@ -158,5 +158,10 @@
   "demo": {
     "long": "Demo: changes are visible to everyone and reset every hour — get your own copy on",
     "short": "Demo: shared plan, resets hourly"
+  },
+  "floor": {
+    "label": "Floor",
+    "level": "Floor {{level}}",
+    "add": "Add floor"
   }
 }

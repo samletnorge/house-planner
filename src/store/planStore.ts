@@ -19,6 +19,10 @@ export type DoorPreset = 'entry' | 'interior' | 'gate'
 
 export type PlanState = {
   plan: Plan | null
+  level: number
+  levelCount: number
+  setLevel: (level: number) => void
+  addLevel: () => void
   tool: Tool
   selectedWallId: string | null
   selectedOpeningId: string | null
@@ -68,6 +72,8 @@ export const usePlanStore = create<PlanState>()(
     persist(
       (set, get) => ({
         plan: null,
+        level: 0,
+        levelCount: 1,
         tool: 'select',
         selectedWallId: null,
         selectedOpeningId: null,
@@ -86,6 +92,15 @@ export const usePlanStore = create<PlanState>()(
         fitNonce: 0,
         group: null,
 
+        setLevel: (level) => {
+          const count = get().levelCount
+          const next = Math.max(0, Math.min(count - 1, Math.floor(level)))
+          set({ level: next, selectedWallId: null, selectedOpeningId: null, selectedFurnitureId: null, selectedZoneId: null, group: null })
+        },
+        addLevel: () => {
+          const next = get().levelCount
+          set({ levelCount: next + 1, level: next, selectedWallId: null, selectedOpeningId: null, selectedFurnitureId: null, selectedZoneId: null, group: null })
+        },
         requestFit: () => set({ fitNonce: get().fitNonce + 1 }),
         setCam: (cam) => set({ cam }),
         setUnderlay: (u) => set({ underlay: { ...get().underlay, ...u } }),
@@ -121,8 +136,16 @@ export const usePlanStore = create<PlanState>()(
         loadPlan: (plan, opts) => {
           const { activeMaterialId, selectedWallId, fitNonce } = get()
           usePlanStore.temporal.getState().pause()
+          const level = Math.max(
+            0,
+            ...plan.walls.map((w) => w.level ?? 0),
+            ...plan.furniture.map((f) => f.level ?? 0),
+            ...(plan.rooms ?? []).map((r) => r.level ?? 0),
+          )
           set({
             plan,
+            level: Math.min(get().level, level),
+            levelCount: level + 1,
             selectedWallId: plan.walls.some((w) => w.id === selectedWallId) ? selectedWallId : null,
             activeMaterialId: plan.materials.some((m) => m.id === activeMaterialId)
               ? activeMaterialId
@@ -191,6 +214,7 @@ export const usePlanStore = create<PlanState>()(
             id,
             a,
             b,
+            level: get().level,
             thickness: material?.thickness ?? DEFAULT_WALL_THICKNESS,
             height: plan.walls.at(-1)?.height ?? DEFAULT_WALL_HEIGHT,
             ...(material ? { materialId: material.id } : {}),

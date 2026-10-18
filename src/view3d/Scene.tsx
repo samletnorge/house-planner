@@ -5,7 +5,7 @@ import { CameraControls, Edges, Environment, Grid, Lightformer, Line, useTexture
 import { EffectComposer, N8AO, ToneMapping } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
 import { t } from '../i18n'
-import type { Palette } from '../model'
+import { filterPlanByLevel, floorHeightOf, levelsOf, type Palette } from '../model'
 import type { Finish, FurnitureItem, Material, Opening, Plan, Point, Wall } from './types'
 import { resolveColors, type Colors } from './palette'
 import { bounds, exteriorWalls, openingPlacement, sanitizePlan, slabOutline, wallGroups, wallEdges, wallFrame, wallSeams, wallSolid, worldUV } from './geometry'
@@ -349,11 +349,11 @@ export const WALL_CUTS: { value: WallCut; label: string }[] = [
 
 const CUT_HEIGHT: Record<Exclude<WallCut, 'full'>, number> = { low: 1.0, floor: 0.1 }
 
-function Cutaway({ target, cut, top }: { target: React.RefObject<THREE.Group | null>; cut: WallCut; top: number }) {
-  const plane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), SLAB + top + 0.1), [])
+function Cutaway({ target, cut, top, base = 0 }: { target: React.RefObject<THREE.Group | null>; cut: WallCut; top: number; base?: number }) {
+  const plane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), base + SLAB + top + 0.1), [base])
   const planes = useMemo(() => [plane], [plane])
   useFrame((_, dt) => {
-    const goal = SLAB + (cut === 'full' ? top + 0.1 : CUT_HEIGHT[cut])
+    const goal = base + SLAB + (cut === 'full' ? top + 0.1 : CUT_HEIGHT[cut])
     plane.constant = Math.abs(plane.constant - goal) < 0.002 ? goal : THREE.MathUtils.damp(plane.constant, goal, 14, Math.min(dt, 0.1))
     target.current?.traverse((o) => {
       const m = (o as THREE.Mesh).material as THREE.Material | THREE.Material[] | undefined
@@ -369,7 +369,7 @@ function Cutaway({ target, cut, top }: { target: React.RefObject<THREE.Group | n
   return null
 }
 
-function HouseBody({ plan, ctx, finishOverride, roof, cut }: { plan: Plan; ctx: Ctx; finishOverride: Finish | null; roof?: ReactNode; cut: WallCut }) {
+function HouseBody({ plan, ctx, finishOverride, roof, cut, elevation = 0 }: { plan: Plan; ctx: Ctx; finishOverride: Finish | null; roof?: ReactNode; cut: WallCut; elevation?: number }) {
   const cutRef = useRef<THREE.Group>(null)
   const materials = useMemo(() => new Map(plan.materials.map((m) => [m.id, m as Material])), [plan.materials])
   const byWall = useMemo(() => {
@@ -387,8 +387,10 @@ function HouseBody({ plan, ctx, finishOverride, roof, cut }: { plan: Plan; ctx: 
   const empty: Opening[] = []
   return (
     <>
-      <Slab plan={plan} ctx={ctx} />
-      <group position={[0, SLAB, 0]} ref={cutRef}>
+      <group position={[0, elevation, 0]}>
+        <Slab plan={plan} ctx={ctx} />
+      </group>
+      <group position={[0, SLAB + elevation, 0]} ref={cutRef}>
         {plan.walls.map((w) => {
           const material = w.materialId ? materials.get(w.materialId) : undefined
           return (
@@ -417,7 +419,7 @@ function HouseBody({ plan, ctx, finishOverride, roof, cut }: { plan: Plan; ctx: 
           {roof}
         </group>
       </group>
-      <Cutaway target={cutRef} cut={cut} top={wallTop} />
+      <Cutaway target={cutRef} cut={cut} top={wallTop} base={elevation} />
     </>
   )
 }
@@ -441,12 +443,13 @@ export type Scene3DProps = {
   texturesUrl?: string
   renderFurniture?: (item: FurnitureItem) => ReactNode
   cut?: WallCut
+  onlyLevel?: number
 }
 
-function Furniture({ plan, render }: { plan: Plan; render: (item: FurnitureItem) => ReactNode }) {
+function Furniture({ plan, render, elevation = 0 }: { plan: Plan; render: (item: FurnitureItem) => ReactNode; elevation?: number }) {
   const items = ((plan as Plan & { furniture?: FurnitureItem[] }).furniture ?? []).filter((i) => i && Number.isFinite(i.x) && Number.isFinite(i.y))
   return (
-    <group position={[0, SLAB, 0]}>
+    <group position={[0, SLAB + elevation, 0]}>
       {items.map((item) => (
         <group key={item.id} position={[item.x * M, 0, item.y * M]} rotation={[0, (-(item.rotationDeg || 0) * Math.PI) / 180, 0]}>
           <Suspense fallback={null}>{render(item)}</Suspense>
@@ -456,8 +459,11 @@ function Furniture({ plan, render }: { plan: Plan; render: (item: FurnitureItem)
   )
 }
 
-export function Scene3D({ plan: rawPlan, view, nonce, look, grid, finishOverride, roof, texturesUrl, renderFurniture, cut = 'full' }: Scene3DProps) {
+export function Scene3D({ plan: rawPlan, view, nonce, look, grid, finishOverride, roof, texturesUrl, renderFurniture, cut = 'full', onlyLevel }: Scene3DProps) {
   const plan = useMemo(() => sanitizePlan(rawPlan), [rawPlan])
+  const allLevels = useMemo(() => (levelsOf(plan).length ? levelsOf(plan) : [0]), [plan])
+  const levels = onlyLevel === undefined ? allLevels : [onlyLevel]
+  const maxLevel = allLevels[allLevels.length - 1]
   const house = useRef<THREE.Group>(null)
   const base = texturesUrl ?? defaultTexturesUrl()
   const palette = (rawPlan as Plan & { palette?: Palette }).palette
@@ -510,15 +516,22 @@ export function Scene3D({ plan: rawPlan, view, nonce, look, grid, finishOverride
         </Environment>
         <Site plan={plan} grid={grid} ctx={ctx} />
         <group ref={house}>
-          {look === 'model' ? (
-            <HouseBody plan={plan} ctx={ctx} finishOverride={finishOverride} roof={roof} cut={cut} />
-          ) : (
-            <Suspense fallback={<HouseBody plan={plan} ctx={modelCtx} finishOverride={finishOverride} roof={roof} cut={cut} />}>
-              <HouseBody plan={plan} ctx={ctx} finishOverride={finishOverride} roof={roof} cut={cut} />
-            </Suspense>
-          )}
+          {levels.map((level) => {
+            const lp = filterPlanByLevel(plan, level)
+            const elevation = level * floorHeightOf(plan) * M
+            const top = level === maxLevel
+            return look === 'model' ? (
+              <HouseBody key={level} plan={lp} ctx={ctx} finishOverride={finishOverride} roof={top ? roof : undefined} cut={cut} elevation={elevation} />
+            ) : (
+              <Suspense key={level} fallback={<HouseBody plan={lp} ctx={modelCtx} finishOverride={finishOverride} roof={top ? roof : undefined} cut={cut} elevation={elevation} />}>
+                <HouseBody plan={lp} ctx={ctx} finishOverride={finishOverride} roof={top ? roof : undefined} cut={cut} elevation={elevation} />
+              </Suspense>
+            )
+          })}
         </group>
-        {renderFurniture && <Furniture plan={plan} render={renderFurniture} />}
+        {renderFurniture && levels.map((level) => (
+          <Furniture key={level} plan={filterPlanByLevel(plan, level)} render={renderFurniture} elevation={level * floorHeightOf(plan) * M} />
+        ))}
         <Rig view={view} nonce={nonce} target={house} fallback={focus} />
         <EffectComposer multisampling={4} enableNormalPass={false}>
           <N8AO halfRes quality="medium" aoRadius={1.2} distanceFalloff={0.8} intensity={look === 'model' ? 2.4 : 1.8} color="#1e2224" />
