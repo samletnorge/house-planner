@@ -1,0 +1,3165 @@
+{
+  "version": 1,
+  "name": "Øyesletta 22",
+  "site": {
+    "convention": "y-down-clockwise",
+    "width": 63520,
+    "depth": 29560,
+    "geo": {
+      "lat": 58.2843752,
+      "lng": 6.9050373,
+      "rotationDeg": 93.403
+    },
+    "boundary": [
+      {
+        "x": 0,
+        "y": 0
+      },
+      {
+        "x": 4333,
+        "y": 0
+      },
+      {
+        "x": 9809,
+        "y": 1391
+      },
+      {
+        "x": 21060,
+        "y": 4186
+      },
+      {
+        "x": 32337,
+        "y": 5799
+      },
+      {
+        "x": 36781,
+        "y": 4319
+      },
+      {
+        "x": 41911,
+        "y": 1596
+      },
+      {
+        "x": 47663,
+        "y": 392
+      },
+      {
+        "x": 48058,
+        "y": 305
+      },
+      {
+        "x": 49454,
+        "y": 65
+      },
+      {
+        "x": 51837,
+        "y": -109
+      },
+      {
+        "x": 53636,
+        "y": 361
+      },
+      {
+        "x": 55059,
+        "y": 973
+      },
+      {
+        "x": 57077,
+        "y": 2615
+      },
+      {
+        "x": 58069,
+        "y": 3927
+      },
+      {
+        "x": 59004,
+        "y": 6185
+      },
+      {
+        "x": 58398,
+        "y": 8321
+      },
+      {
+        "x": 58268,
+        "y": 8811
+      },
+      {
+        "x": 57329,
+        "y": 11127
+      },
+      {
+        "x": 56050,
+        "y": 14272
+      },
+      {
+        "x": 53272,
+        "y": 14528
+      },
+      {
+        "x": 39517,
+        "y": 15812
+      },
+      {
+        "x": 39706,
+        "y": 16011
+      },
+      {
+        "x": 35638,
+        "y": 17163
+      },
+      {
+        "x": 32868,
+        "y": 18989
+      },
+      {
+        "x": 30772,
+        "y": 21640
+      },
+      {
+        "x": 28665,
+        "y": 24841
+      },
+      {
+        "x": 26800,
+        "y": 26622
+      },
+      {
+        "x": 24192,
+        "y": 27954
+      },
+      {
+        "x": 19812,
+        "y": 29116
+      },
+      {
+        "x": 18934,
+        "y": 29451
+      },
+      {
+        "x": -4516,
+        "y": 4200
+      },
+      {
+        "x": -4413,
+        "y": 2841
+      },
+      {
+        "x": -4139,
+        "y": 1985
+      }
+    ],
+    "note": "Kartverket matrikkel 4227/113/81 (teig 247764561), areal 1001,9 m². Grensa følger delvis hjelpelinjer ved veg og vasskant, nokre grenser er fiktive - kontroller mot oppmåling før bygging. Huset er ein eigedom med to leilegheiter: 1. etasje 102 m² (nivå 0), 2. etasje 79 m² (nivå 1) og eit uisolert uthus på 58 m² (BRA-e). Mål er skalerte frå planteikningane i salsoppgåva. Huset er rotert -139° på tomta. Etasjane er lagde oppå kvarandre; 2. etasje er skalert til same ytterkontur som hovudhuset i 1. etasje, slik at ytterveggane ligg i flukt.",
+    "zones": [
+      {
+        "id": "z-f1-porch",
+        "name": "Inngang 1. etasje",
+        "kind": "paving",
+        "polygon": [
+          {
+            "x": 20857,
+            "y": 10681
+          },
+          {
+            "x": 18593,
+            "y": 8713
+          },
+          {
+            "x": 19479,
+            "y": 7694
+          },
+          {
+            "x": 21743,
+            "y": 9662
+          }
+        ],
+        "level": 0
+      },
+      {
+        "id": "z-f1-wing-stair",
+        "name": "Trapp Soverom 4",
+        "kind": "paving",
+        "polygon": [
+          {
+            "x": 9998,
+            "y": 5521
+          },
+          {
+            "x": 8504,
+            "y": 4222
+          },
+          {
+            "x": 9081,
+            "y": 3558
+          },
+          {
+            "x": 10576,
+            "y": 4857
+          }
+        ],
+        "level": 0
+      },
+      {
+        "id": "z-f2-balkong",
+        "name": "Balkong 2. etasje",
+        "kind": "paving",
+        "polygon": [
+          {
+            "x": 18203,
+            "y": 8375
+          },
+          {
+            "x": 17401,
+            "y": 7676
+          },
+          {
+            "x": 18789,
+            "y": 6078
+          },
+          {
+            "x": 19592,
+            "y": 6777
+          }
+        ],
+        "level": 1
+      }
+    ],
+    "floorHeight": 3000
+  },
+  "materials": [
+    {
+      "id": "laft-365",
+      "name": "Yttervegg: laft 200 + isolasjon 100 + kledning (365 mm)",
+      "kind": "timber",
+      "thickness": 365,
+      "color": "#c8a06a",
+      "finish": "timber",
+      "note": "ut. kledning 20 + ut. lekting 25 + vindpapp + laft 200 + vindsperre + isolasjon 100 + dampsperre + innemateriale 13"
+    },
+    {
+      "id": "vegg-120",
+      "name": "Innervegg 120 mm",
+      "kind": "frame",
+      "thickness": 120,
+      "color": "#e8e2d8"
+    },
+    {
+      "id": "uthus-200",
+      "name": "Uthus/garasje: uisolert tømmervegg 200 mm",
+      "kind": "timber",
+      "thickness": 200,
+      "color": "#b98f62",
+      "finish": "timber",
+      "note": "eldre uthus, ikkje isolert"
+    }
+  ],
+  "walls": [
+    {
+      "id": "f1-n",
+      "a": {
+        "x": 15937,
+        "y": 17865
+      },
+      "b": {
+        "x": 6443,
+        "y": 9612
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-e1",
+      "a": {
+        "x": 6443,
+        "y": 9612
+      },
+      "b": {
+        "x": 6593,
+        "y": 9438
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-wing-n",
+      "a": {
+        "x": 6593,
+        "y": 9438
+      },
+      "b": {
+        "x": 5099,
+        "y": 8139
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-wing-e",
+      "a": {
+        "x": 5099,
+        "y": 8139
+      },
+      "b": {
+        "x": 8504,
+        "y": 4222
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-wing-s",
+      "a": {
+        "x": 8504,
+        "y": 4222
+      },
+      "b": {
+        "x": 9998,
+        "y": 5521
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-e2",
+      "a": {
+        "x": 9998,
+        "y": 5521
+      },
+      "b": {
+        "x": 11127,
+        "y": 4223
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-ch",
+      "a": {
+        "x": 11127,
+        "y": 4223
+      },
+      "b": {
+        "x": 13174,
+        "y": 4002
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-s",
+      "a": {
+        "x": 13174,
+        "y": 4002
+      },
+      "b": {
+        "x": 21612,
+        "y": 11337
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-w",
+      "a": {
+        "x": 21612,
+        "y": 11337
+      },
+      "b": {
+        "x": 15937,
+        "y": 17865
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 0
+    },
+    {
+      "id": "f1-wing-w",
+      "a": {
+        "x": 6593,
+        "y": 9438
+      },
+      "b": {
+        "x": 9998,
+        "y": 5521
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-v1",
+      "a": {
+        "x": 13431,
+        "y": 15687
+      },
+      "b": {
+        "x": 16141,
+        "y": 12570
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-v2",
+      "a": {
+        "x": 11326,
+        "y": 13857
+      },
+      "b": {
+        "x": 17000,
+        "y": 7328
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-v3",
+      "a": {
+        "x": 9371,
+        "y": 12158
+      },
+      "b": {
+        "x": 11339,
+        "y": 9893
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-v4",
+      "a": {
+        "x": 10773,
+        "y": 9401
+      },
+      "b": {
+        "x": 12413,
+        "y": 7515
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-v5",
+      "a": {
+        "x": 16873,
+        "y": 13207
+      },
+      "b": {
+        "x": 19838,
+        "y": 9795
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-h1",
+      "a": {
+        "x": 15399,
+        "y": 13423
+      },
+      "b": {
+        "x": 11339,
+        "y": 9893
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-h2",
+      "a": {
+        "x": 18646,
+        "y": 14748
+      },
+      "b": {
+        "x": 16141,
+        "y": 12570
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f1-h3",
+      "a": {
+        "x": 18115,
+        "y": 10298
+      },
+      "b": {
+        "x": 13489,
+        "y": 6277
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f2-n",
+      "a": {
+        "x": 15937,
+        "y": 17865
+      },
+      "b": {
+        "x": 6442,
+        "y": 9612
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 1
+    },
+    {
+      "id": "f2-e",
+      "a": {
+        "x": 6442,
+        "y": 9612
+      },
+      "b": {
+        "x": 11127,
+        "y": 4223
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 1
+    },
+    {
+      "id": "f2-s",
+      "a": {
+        "x": 13174,
+        "y": 4002
+      },
+      "b": {
+        "x": 21612,
+        "y": 11336
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 1
+    },
+    {
+      "id": "f2-w",
+      "a": {
+        "x": 21612,
+        "y": 11336
+      },
+      "b": {
+        "x": 15937,
+        "y": 17865
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 1
+    },
+    {
+      "id": "f2-v1",
+      "a": {
+        "x": 13573,
+        "y": 15810
+      },
+      "b": {
+        "x": 19247,
+        "y": 9282
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 1
+    },
+    {
+      "id": "f2-v2",
+      "a": {
+        "x": 10701,
+        "y": 13313
+      },
+      "b": {
+        "x": 16375,
+        "y": 6785
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 1
+    },
+    {
+      "id": "f2-v3",
+      "a": {
+        "x": 16278,
+        "y": 10591
+      },
+      "b": {
+        "x": 18203,
+        "y": 8375
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 1
+    },
+    {
+      "id": "f2-v4",
+      "a": {
+        "x": 11024,
+        "y": 8034
+      },
+      "b": {
+        "x": 12686,
+        "y": 6123
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 1
+    },
+    {
+      "id": "f2-h1",
+      "a": {
+        "x": 18056,
+        "y": 15428
+      },
+      "b": {
+        "x": 12820,
+        "y": 10875
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 1
+    },
+    {
+      "id": "f2-h2",
+      "a": {
+        "x": 19685,
+        "y": 13552
+      },
+      "b": {
+        "x": 14448,
+        "y": 9001
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 1
+    },
+    {
+      "id": "u-n",
+      "a": {
+        "x": 29336,
+        "y": 20302
+      },
+      "b": {
+        "x": 22754,
+        "y": 14164
+      },
+      "thickness": 200,
+      "height": 2500,
+      "materialId": "uthus-200",
+      "level": 0
+    },
+    {
+      "id": "u-e",
+      "a": {
+        "x": 22754,
+        "y": 14164
+      },
+      "b": {
+        "x": 27664,
+        "y": 8898
+      },
+      "thickness": 200,
+      "height": 2500,
+      "materialId": "uthus-200",
+      "level": 0
+    },
+    {
+      "id": "u-s",
+      "a": {
+        "x": 27664,
+        "y": 8898
+      },
+      "b": {
+        "x": 34246,
+        "y": 15036
+      },
+      "thickness": 200,
+      "height": 2500,
+      "materialId": "uthus-200",
+      "level": 0
+    },
+    {
+      "id": "u-w",
+      "a": {
+        "x": 34246,
+        "y": 15036
+      },
+      "b": {
+        "x": 29336,
+        "y": 20302
+      },
+      "thickness": 200,
+      "height": 2500,
+      "materialId": "uthus-200",
+      "level": 0
+    },
+    {
+      "id": "u-v1",
+      "a": {
+        "x": 26410,
+        "y": 17574
+      },
+      "b": {
+        "x": 31321,
+        "y": 12308
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "u-h1",
+      "a": {
+        "x": 31382,
+        "y": 18108
+      },
+      "b": {
+        "x": 28456,
+        "y": 15380
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "u-h2",
+      "a": {
+        "x": 28456,
+        "y": 15380
+      },
+      "b": {
+        "x": 24800,
+        "y": 11970
+      },
+      "thickness": 120,
+      "height": 2500,
+      "materialId": "vegg-120",
+      "level": 0
+    },
+    {
+      "id": "f2-ch",
+      "a": {
+        "x": 11127,
+        "y": 4223
+      },
+      "b": {
+        "x": 13174,
+        "y": 4002
+      },
+      "thickness": 365,
+      "height": 2500,
+      "materialId": "laft-365",
+      "level": 1
+    }
+  ],
+  "openings": [
+    {
+      "id": "o1",
+      "wallId": "f1-n",
+      "type": "window",
+      "offset": 800,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o2",
+      "wallId": "f1-n",
+      "type": "window",
+      "offset": 3600,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o3",
+      "wallId": "f1-n",
+      "type": "window",
+      "offset": 6400,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o4",
+      "wallId": "f1-n",
+      "type": "window",
+      "offset": 9000,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o5",
+      "wallId": "f1-n",
+      "type": "window",
+      "offset": 10500,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o6",
+      "wallId": "f1-n",
+      "type": "window",
+      "offset": 11900,
+      "width": 600,
+      "height": 600,
+      "sill": 1500
+    },
+    {
+      "id": "o7",
+      "wallId": "f1-w",
+      "type": "window",
+      "offset": 6750,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o8",
+      "wallId": "f1-w",
+      "type": "window",
+      "offset": 3350,
+      "width": 600,
+      "height": 600,
+      "sill": 1200
+    },
+    {
+      "id": "o9",
+      "wallId": "f1-w",
+      "type": "window",
+      "offset": 2050,
+      "width": 600,
+      "height": 600,
+      "sill": 1200
+    },
+    {
+      "id": "o10",
+      "wallId": "f1-s",
+      "type": "door",
+      "offset": 5620,
+      "width": 960,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o11",
+      "wallId": "f1-s",
+      "type": "door",
+      "offset": 4020,
+      "width": 960,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o12",
+      "wallId": "f1-s",
+      "type": "window",
+      "offset": 180,
+      "width": 1600,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o13",
+      "wallId": "f1-e2",
+      "type": "window",
+      "offset": 300,
+      "width": 900,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o14",
+      "wallId": "f1-wing-e",
+      "type": "window",
+      "offset": 900,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o15",
+      "wallId": "f1-wing-e",
+      "type": "window",
+      "offset": 4200,
+      "width": 900,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o16",
+      "wallId": "f1-wing-n",
+      "type": "window",
+      "offset": 500,
+      "width": 900,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o17",
+      "wallId": "f1-wing-w",
+      "type": "door",
+      "offset": 2920,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o18",
+      "wallId": "f1-v1",
+      "type": "door",
+      "offset": 3200,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o19",
+      "wallId": "f1-h1",
+      "type": "door",
+      "offset": 280,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o20",
+      "wallId": "f1-h1",
+      "type": "door",
+      "offset": 3180,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o21",
+      "wallId": "f1-v5",
+      "type": "door",
+      "offset": 300,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o22",
+      "wallId": "f1-h3",
+      "type": "door",
+      "offset": 680,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o23",
+      "wallId": "f1-h3",
+      "type": "door",
+      "offset": 3180,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o24",
+      "wallId": "f2-n",
+      "type": "window",
+      "offset": 1113,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o25",
+      "wallId": "f2-n",
+      "type": "window",
+      "offset": 4050,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o26",
+      "wallId": "f2-n",
+      "type": "window",
+      "offset": 8088,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o27",
+      "wallId": "f2-n",
+      "type": "window",
+      "offset": 9924,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o28",
+      "wallId": "f2-w",
+      "type": "window",
+      "offset": 6459,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o29",
+      "wallId": "f2-w",
+      "type": "window",
+      "offset": 831,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o30",
+      "wallId": "f2-s",
+      "type": "window",
+      "offset": 3075,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o31",
+      "wallId": "f2-s",
+      "type": "door",
+      "offset": 6325,
+      "width": 900,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o32",
+      "wallId": "f2-e",
+      "type": "window",
+      "offset": 1520,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o33",
+      "wallId": "f2-e",
+      "type": "window",
+      "offset": 3540,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o34",
+      "wallId": "f2-e",
+      "type": "window",
+      "offset": 5661,
+      "width": 1200,
+      "height": 1400,
+      "sill": 900
+    },
+    {
+      "id": "o35",
+      "wallId": "f2-h1",
+      "type": "door",
+      "offset": 823,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o36",
+      "wallId": "f2-h1",
+      "type": "door",
+      "offset": 3760,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o37",
+      "wallId": "f2-h2",
+      "type": "door",
+      "offset": 823,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o38",
+      "wallId": "f2-h2",
+      "type": "door",
+      "offset": 4494,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o39",
+      "wallId": "f2-v2",
+      "type": "door",
+      "offset": 3771,
+      "width": 900,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o40",
+      "wallId": "u-w",
+      "type": "door",
+      "offset": 5000,
+      "width": 960,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o41",
+      "wallId": "u-s",
+      "type": "gate",
+      "offset": 2000,
+      "width": 2500,
+      "height": 2200,
+      "sill": 0
+    },
+    {
+      "id": "o42",
+      "wallId": "u-h1",
+      "type": "door",
+      "offset": 1000,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o43",
+      "wallId": "u-h2",
+      "type": "door",
+      "offset": 1000,
+      "width": 800,
+      "height": 2100,
+      "sill": 0,
+      "hinge": "start",
+      "side": "left"
+    },
+    {
+      "id": "o44",
+      "wallId": "u-n",
+      "type": "window",
+      "offset": 1500,
+      "width": 900,
+      "height": 1200,
+      "sill": 1200
+    },
+    {
+      "id": "o45",
+      "wallId": "u-e",
+      "type": "window",
+      "offset": 2000,
+      "width": 900,
+      "height": 1200,
+      "sill": 1200
+    }
+  ],
+  "furniture": [
+    {
+      "id": "f1",
+      "type": "bed-1600",
+      "x": 16163,
+      "y": 15014,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f2",
+      "type": "nightstand",
+      "x": 15933,
+      "y": 16802,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f3",
+      "type": "wardrobe",
+      "x": 15848,
+      "y": 13548,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f4",
+      "type": "bed-900",
+      "x": 13374,
+      "y": 13650,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f5",
+      "type": "nightstand",
+      "x": 13604,
+      "y": 14910,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f6",
+      "type": "bed-900",
+      "x": 11336,
+      "y": 11878,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f7",
+      "type": "nightstand",
+      "x": 11566,
+      "y": 13138,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f8",
+      "type": "bed-1600",
+      "x": 7585,
+      "y": 6895,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f9",
+      "type": "wardrobe",
+      "x": 8540,
+      "y": 5340,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f10",
+      "type": "sofa",
+      "x": 11919,
+      "y": 6025,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f11",
+      "type": "coffee-table",
+      "x": 11066,
+      "y": 7006,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f12",
+      "type": "tv-stand",
+      "x": 8573,
+      "y": 9874,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f13",
+      "type": "armchair",
+      "x": 10292,
+      "y": 6068,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f14",
+      "type": "plant",
+      "x": 11624,
+      "y": 4841,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f15",
+      "type": "dining-6",
+      "x": 13537,
+      "y": 8889,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f16",
+      "type": "kitchen-base",
+      "x": 11393,
+      "y": 9145,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f17",
+      "type": "kitchen-sink",
+      "x": 11852,
+      "y": 8617,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f18",
+      "type": "stove",
+      "x": 12312,
+      "y": 8089,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f19",
+      "type": "fridge",
+      "x": 12771,
+      "y": 7560,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f20",
+      "type": "toilet",
+      "x": 18810,
+      "y": 13340,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f21",
+      "type": "washbasin",
+      "x": 17531,
+      "y": 13288,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f22",
+      "type": "shower",
+      "x": 19564,
+      "y": 10949,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f23",
+      "type": "washer",
+      "x": 20450,
+      "y": 11454,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f24",
+      "type": "water-heater",
+      "x": 19748,
+      "y": 12566,
+      "rotationDeg": 221,
+      "level": 0
+    },
+    {
+      "id": "f25",
+      "type": "shoe-cabinet",
+      "x": 15506,
+      "y": 12721,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f26",
+      "type": "coat-rack",
+      "x": 14072,
+      "y": 11474,
+      "rotationDeg": 311,
+      "level": 0
+    },
+    {
+      "id": "f27",
+      "type": "bed-900",
+      "x": 15780,
+      "y": 15621,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f28",
+      "type": "nightstand",
+      "x": 15865,
+      "y": 16830,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f29",
+      "type": "bed-1600",
+      "x": 13193,
+      "y": 13373,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f30",
+      "type": "nightstand",
+      "x": 13740,
+      "y": 14983,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f31",
+      "type": "bed-900",
+      "x": 19392,
+      "y": 11466,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f32",
+      "type": "nightstand",
+      "x": 19316,
+      "y": 12860,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f33",
+      "type": "toilet",
+      "x": 17609,
+      "y": 8294,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f34",
+      "type": "washbasin",
+      "x": 14976,
+      "y": 9086,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f35",
+      "type": "shower",
+      "x": 16419,
+      "y": 7424,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f36",
+      "type": "dining-4",
+      "x": 14312,
+      "y": 7051,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f37",
+      "type": "kitchen-base",
+      "x": 11759,
+      "y": 7749,
+      "rotationDeg": 311,
+      "level": 1
+    },
+    {
+      "id": "f38",
+      "type": "kitchen-sink",
+      "x": 12321,
+      "y": 7103,
+      "rotationDeg": 311,
+      "level": 1
+    },
+    {
+      "id": "f39",
+      "type": "stove",
+      "x": 12883,
+      "y": 6456,
+      "rotationDeg": 311,
+      "level": 1
+    },
+    {
+      "id": "f40",
+      "type": "sofa",
+      "x": 11638,
+      "y": 6023,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f41",
+      "type": "coffee-table",
+      "x": 10595,
+      "y": 7223,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f42",
+      "type": "tv-stand",
+      "x": 8267,
+      "y": 9901,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f43",
+      "type": "armchair",
+      "x": 11610,
+      "y": 4377,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f44",
+      "type": "dining-6",
+      "x": 9974,
+      "y": 10736,
+      "rotationDeg": 221,
+      "level": 1
+    },
+    {
+      "id": "f45",
+      "type": "plant",
+      "x": 11702,
+      "y": 4458,
+      "rotationDeg": 221,
+      "level": 1
+    }
+  ],
+  "rooms": [
+    {
+      "id": "r1-sov1",
+      "name": "1. etg. Soverom 1",
+      "x": 16041,
+      "y": 15306,
+      "kind": "bedroom",
+      "level": 0
+    },
+    {
+      "id": "r1-sov2",
+      "name": "1. etg. Soverom 2",
+      "x": 13374,
+      "y": 13650,
+      "kind": "bedroom",
+      "level": 0
+    },
+    {
+      "id": "r1-sov3",
+      "name": "1. etg. Soverom 3",
+      "x": 11336,
+      "y": 11878,
+      "kind": "bedroom",
+      "level": 0
+    },
+    {
+      "id": "r1-stue",
+      "name": "1. etg. Stue",
+      "x": 10082,
+      "y": 8138,
+      "kind": "living",
+      "level": 0
+    },
+    {
+      "id": "r1-kjokken",
+      "name": "1. etg. Kjøkken",
+      "x": 13462,
+      "y": 8823,
+      "kind": "kitchen",
+      "level": 0
+    },
+    {
+      "id": "r1-gang",
+      "name": "1. etg. Gang",
+      "x": 15801,
+      "y": 10857,
+      "kind": "hall",
+      "level": 0
+    },
+    {
+      "id": "r1-bad",
+      "name": "1. etg. Bad",
+      "x": 19371,
+      "y": 12238,
+      "kind": "bath",
+      "level": 0
+    },
+    {
+      "id": "r1-ent1",
+      "name": "1. etg. Entré",
+      "x": 17573,
+      "y": 8820,
+      "kind": "hall",
+      "level": 0
+    },
+    {
+      "id": "r1-ent2",
+      "name": "1. etg. Entré 2",
+      "x": 15233,
+      "y": 6786,
+      "kind": "hall",
+      "level": 0
+    },
+    {
+      "id": "r1-wing",
+      "name": "1. etg. Soverom 4",
+      "x": 7585,
+      "y": 6895,
+      "kind": "bedroom",
+      "level": 0
+    },
+    {
+      "id": "r2-sov1",
+      "name": "2. etg. Soverom 1",
+      "x": 15872,
+      "y": 15702,
+      "kind": "bedroom",
+      "level": 1
+    },
+    {
+      "id": "r2-sov2",
+      "name": "2. etg. Soverom 2",
+      "x": 13193,
+      "y": 13373,
+      "kind": "bedroom",
+      "level": 1
+    },
+    {
+      "id": "r2-sov3",
+      "name": "2. etg. Soverom 3",
+      "x": 19484,
+      "y": 11547,
+      "kind": "bedroom",
+      "level": 1
+    },
+    {
+      "id": "r2-bad",
+      "name": "2. etg. Bad",
+      "x": 16344,
+      "y": 8817,
+      "kind": "bath",
+      "level": 1
+    },
+    {
+      "id": "r2-gang",
+      "name": "2. etg. Gang",
+      "x": 15132,
+      "y": 11330,
+      "kind": "hall",
+      "level": 1
+    },
+    {
+      "id": "r2-kjokken",
+      "name": "2. etg. Kjøkken",
+      "x": 13886,
+      "y": 7167,
+      "kind": "kitchen",
+      "level": 1
+    },
+    {
+      "id": "r2-stue",
+      "name": "2. etg. Stue",
+      "x": 10250,
+      "y": 7247,
+      "kind": "living",
+      "level": 1
+    },
+    {
+      "id": "r2-spise",
+      "name": "2. etg. Spisestue",
+      "x": 10435,
+      "y": 11137,
+      "kind": "living",
+      "level": 1
+    },
+    {
+      "id": "ru-gang",
+      "name": "Uthus gang",
+      "x": 28896,
+      "y": 17841,
+      "kind": "storage",
+      "level": 0
+    },
+    {
+      "id": "ru-l1",
+      "name": "Lager 1",
+      "x": 25605,
+      "y": 14772,
+      "kind": "storage",
+      "level": 0
+    },
+    {
+      "id": "ru-l2",
+      "name": "Lager 2",
+      "x": 29455,
+      "y": 13576,
+      "kind": "storage",
+      "level": 0
+    }
+  ],
+  "networks": {
+    "sewer": {
+      "nodes": [
+        {
+          "id": "s1-toilet",
+          "x": 18810,
+          "y": 13340,
+          "kind": "fixture",
+          "fixture": "toilet",
+          "level": 0
+        },
+        {
+          "id": "s1-sink",
+          "x": 17531,
+          "y": 13288,
+          "kind": "fixture",
+          "fixture": "sink",
+          "level": 0
+        },
+        {
+          "id": "s1-shower",
+          "x": 19564,
+          "y": 10949,
+          "kind": "fixture",
+          "fixture": "shower",
+          "level": 0
+        },
+        {
+          "id": "s1-washer",
+          "x": 20450,
+          "y": 11454,
+          "kind": "fixture",
+          "fixture": "washer",
+          "level": 0
+        },
+        {
+          "id": "s1-kitchen",
+          "x": 11852,
+          "y": 8617,
+          "kind": "fixture",
+          "fixture": "kitchen",
+          "level": 0
+        },
+        {
+          "id": "s1-riser",
+          "x": 19988,
+          "y": 10919,
+          "kind": "riser",
+          "height": 3000,
+          "level": 0
+        },
+        {
+          "id": "s1-outlet",
+          "x": 20578,
+          "y": 10240,
+          "kind": "outlet",
+          "level": 0
+        },
+        {
+          "id": "septic",
+          "x": 15000,
+          "y": 18800,
+          "kind": "septic",
+          "model": "Tverr 3",
+          "w": 2500,
+          "d": 1100,
+          "rotationDeg": 0,
+          "level": 0
+        },
+        {
+          "id": "s2-toilet",
+          "x": 17609,
+          "y": 8294,
+          "kind": "fixture",
+          "fixture": "toilet",
+          "level": 1
+        },
+        {
+          "id": "s2-sink",
+          "x": 14976,
+          "y": 9086,
+          "kind": "fixture",
+          "fixture": "sink",
+          "level": 1
+        },
+        {
+          "id": "s2-shower",
+          "x": 16419,
+          "y": 7424,
+          "kind": "fixture",
+          "fixture": "shower",
+          "level": 1
+        },
+        {
+          "id": "s2-riser",
+          "x": 17227,
+          "y": 7801,
+          "kind": "riser",
+          "height": 3000,
+          "level": 1
+        },
+        {
+          "id": "s2-outlet",
+          "x": 17468,
+          "y": 7523,
+          "kind": "outlet",
+          "level": 1
+        }
+      ],
+      "pipes": [
+        {
+          "id": "sp1",
+          "from": "s1-toilet",
+          "to": "s1-riser",
+          "diameter": 110,
+          "slope": 2,
+          "location": "inside"
+        },
+        {
+          "id": "sp2",
+          "from": "s1-sink",
+          "to": "s1-riser",
+          "diameter": 50,
+          "slope": 3,
+          "location": "inside"
+        },
+        {
+          "id": "sp3",
+          "from": "s1-shower",
+          "to": "s1-riser",
+          "diameter": 50,
+          "slope": 3,
+          "location": "inside"
+        },
+        {
+          "id": "sp4",
+          "from": "s1-washer",
+          "to": "s1-riser",
+          "diameter": 50,
+          "slope": 3,
+          "location": "inside"
+        },
+        {
+          "id": "sp5",
+          "from": "s1-kitchen",
+          "to": "s1-riser",
+          "diameter": 50,
+          "slope": 3,
+          "location": "inside"
+        },
+        {
+          "id": "sp6",
+          "from": "s1-riser",
+          "to": "s1-outlet",
+          "diameter": 110,
+          "slope": 2,
+          "location": "inside"
+        },
+        {
+          "id": "sp7",
+          "from": "s1-outlet",
+          "to": "septic",
+          "diameter": 110,
+          "slope": 1,
+          "location": "outside",
+          "depth": 1200
+        },
+        {
+          "id": "sp8",
+          "from": "s2-toilet",
+          "to": "s2-riser",
+          "diameter": 110,
+          "slope": 2,
+          "location": "inside"
+        },
+        {
+          "id": "sp9",
+          "from": "s2-sink",
+          "to": "s2-riser",
+          "diameter": 50,
+          "slope": 3,
+          "location": "inside"
+        },
+        {
+          "id": "sp10",
+          "from": "s2-shower",
+          "to": "s2-riser",
+          "diameter": 50,
+          "slope": 3,
+          "location": "inside"
+        },
+        {
+          "id": "sp11",
+          "from": "s2-riser",
+          "to": "s2-outlet",
+          "diameter": 110,
+          "slope": 2,
+          "location": "inside"
+        },
+        {
+          "id": "sp12",
+          "from": "s2-outlet",
+          "to": "septic",
+          "diameter": 110,
+          "slope": 1,
+          "location": "outside",
+          "depth": 1200
+        }
+      ]
+    },
+    "water": {
+      "nodes": [
+        {
+          "id": "wn-source",
+          "x": 21000,
+          "y": 17000,
+          "kind": "source",
+          "source": "borehole",
+          "label": "Borehull",
+          "level": 0
+        },
+        {
+          "id": "wn-entry",
+          "x": 19545,
+          "y": 13714,
+          "kind": "entry",
+          "level": 0
+        },
+        {
+          "id": "wn-pump",
+          "x": 19260,
+          "y": 12671,
+          "kind": "pump",
+          "model": "Dzhileks Jumbo 60/35",
+          "level": 0
+        },
+        {
+          "id": "wn-filter",
+          "x": 18505,
+          "y": 12015,
+          "kind": "filter",
+          "level": 0
+        },
+        {
+          "id": "wn-collector-c",
+          "x": 17750,
+          "y": 11359,
+          "kind": "collector",
+          "line": "cold",
+          "outputs": 8,
+          "level": 0
+        },
+        {
+          "id": "wn-boiler",
+          "x": 16920,
+          "y": 10637,
+          "kind": "boiler",
+          "model": "200 l",
+          "level": 0
+        },
+        {
+          "id": "wn-collector-h",
+          "x": 17379,
+          "y": 10109,
+          "kind": "collector",
+          "line": "hot",
+          "outputs": 6,
+          "level": 0
+        },
+        {
+          "id": "wn-tap",
+          "x": 20907,
+          "y": 12910,
+          "kind": "tap_outdoor",
+          "label": "Utvendig kran",
+          "level": 0
+        },
+        {
+          "id": "w1-toilet",
+          "x": 19007,
+          "y": 13114,
+          "kind": "fixture",
+          "fixture": "toilet",
+          "level": 0
+        },
+        {
+          "id": "w1-sink",
+          "x": 17662,
+          "y": 13137,
+          "kind": "fixture",
+          "fixture": "sink",
+          "level": 0
+        },
+        {
+          "id": "w1-shower",
+          "x": 19696,
+          "y": 10798,
+          "kind": "fixture",
+          "fixture": "shower",
+          "level": 0
+        },
+        {
+          "id": "w1-kitchen",
+          "x": 11984,
+          "y": 8466,
+          "kind": "fixture",
+          "fixture": "kitchen",
+          "level": 0
+        },
+        {
+          "id": "w2-toilet",
+          "x": 17584,
+          "y": 7949,
+          "kind": "fixture",
+          "fixture": "toilet",
+          "level": 1
+        },
+        {
+          "id": "w2-sink",
+          "x": 15136,
+          "y": 8901,
+          "kind": "fixture",
+          "fixture": "sink",
+          "level": 1
+        },
+        {
+          "id": "w2-shower",
+          "x": 16581,
+          "y": 7239,
+          "kind": "fixture",
+          "fixture": "shower",
+          "level": 1
+        },
+        {
+          "id": "w2-kitchen",
+          "x": 12482,
+          "y": 6918,
+          "kind": "fixture",
+          "fixture": "kitchen",
+          "level": 1
+        }
+      ],
+      "pipes": [
+        {
+          "id": "wp1",
+          "from": "wn-source",
+          "to": "wn-entry",
+          "line": "cold",
+          "diameter": 32,
+          "material": "PE",
+          "location": "outside",
+          "depth": 1800
+        },
+        {
+          "id": "wp2",
+          "from": "wn-entry",
+          "to": "wn-pump",
+          "line": "cold",
+          "diameter": 32,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp3",
+          "from": "wn-pump",
+          "to": "wn-filter",
+          "line": "cold",
+          "diameter": 25,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp4",
+          "from": "wn-filter",
+          "to": "wn-collector-c",
+          "line": "cold",
+          "diameter": 25,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp5",
+          "from": "wn-collector-c",
+          "to": "wn-boiler",
+          "line": "cold",
+          "diameter": 20,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp6",
+          "from": "wn-collector-c",
+          "to": "wn-tap",
+          "line": "cold",
+          "diameter": 20,
+          "material": "PEX",
+          "location": "outside"
+        },
+        {
+          "id": "wp7",
+          "from": "wn-collector-c",
+          "to": "w1-toilet",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp8",
+          "from": "wn-collector-c",
+          "to": "w1-sink",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp9",
+          "from": "wn-collector-c",
+          "to": "w1-shower",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp10",
+          "from": "wn-collector-c",
+          "to": "w1-kitchen",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp11",
+          "from": "wn-collector-c",
+          "to": "w2-toilet",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp12",
+          "from": "wn-collector-c",
+          "to": "w2-sink",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp13",
+          "from": "wn-collector-c",
+          "to": "w2-shower",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp14",
+          "from": "wn-collector-c",
+          "to": "w2-kitchen",
+          "line": "cold",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp15",
+          "from": "wn-boiler",
+          "to": "wn-collector-h",
+          "line": "hot",
+          "diameter": 25,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp16",
+          "from": "wn-collector-h",
+          "to": "w1-sink",
+          "line": "hot",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp17",
+          "from": "wn-collector-h",
+          "to": "w1-shower",
+          "line": "hot",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp18",
+          "from": "wn-collector-h",
+          "to": "w1-kitchen",
+          "line": "hot",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp19",
+          "from": "wn-collector-h",
+          "to": "w2-sink",
+          "line": "hot",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp20",
+          "from": "wn-collector-h",
+          "to": "w2-shower",
+          "line": "hot",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        },
+        {
+          "id": "wp21",
+          "from": "wn-collector-h",
+          "to": "w2-kitchen",
+          "line": "hot",
+          "diameter": 16,
+          "material": "PEX",
+          "location": "inside"
+        }
+      ]
+    },
+    "electric": {
+      "panel": {
+        "id": "panel",
+        "x": 19470,
+        "y": 13649,
+        "wallId": "f1-w",
+        "modules": 48,
+        "level": 0
+      },
+      "points": [
+        {
+          "id": "ep1",
+          "kind": "light",
+          "x": 15246,
+          "y": 7990,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep2",
+          "kind": "light",
+          "x": 10410,
+          "y": 7761,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep3",
+          "kind": "light",
+          "x": 11722,
+          "y": 6252,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep4",
+          "kind": "light",
+          "x": 16041,
+          "y": 15306,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep5",
+          "kind": "light",
+          "x": 13374,
+          "y": 13650,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep6",
+          "kind": "light",
+          "x": 11336,
+          "y": 11878,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep7",
+          "kind": "light",
+          "x": 7585,
+          "y": 6895,
+          "height": 2500,
+          "circuitId": "c1",
+          "level": 0
+        },
+        {
+          "id": "ep8",
+          "kind": "socket",
+          "x": 21110,
+          "y": 11762,
+          "height": 300,
+          "circuitId": "c2",
+          "wallId": "f1-w",
+          "level": 0
+        },
+        {
+          "id": "ep9",
+          "kind": "socket",
+          "x": 10620,
+          "y": 5691,
+          "height": 300,
+          "circuitId": "c2",
+          "wallId": "f1-n",
+          "level": 0
+        },
+        {
+          "id": "ep10",
+          "kind": "socket",
+          "x": 10637,
+          "y": 9482,
+          "height": 300,
+          "circuitId": "c4",
+          "wallId": "f1-h1",
+          "level": 0
+        },
+        {
+          "id": "ep11",
+          "kind": "socket",
+          "x": 8599,
+          "y": 7710,
+          "height": 300,
+          "circuitId": "c4",
+          "wallId": "f1-h1",
+          "level": 0
+        },
+        {
+          "id": "ep12",
+          "kind": "socket_ip44",
+          "x": 17847,
+          "y": 12238,
+          "height": 1100,
+          "circuitId": "c5",
+          "wallId": "f1-v5",
+          "level": 0
+        },
+        {
+          "id": "ep13",
+          "kind": "socket_ip44",
+          "x": 19159,
+          "y": 10729,
+          "height": 1100,
+          "circuitId": "c5",
+          "wallId": "f1-v5",
+          "level": 0
+        },
+        {
+          "id": "ep14",
+          "kind": "outdoor",
+          "x": 19798,
+          "y": 13271,
+          "height": 1100,
+          "circuitId": "c6",
+          "wallId": "f1-w",
+          "level": 0
+        },
+        {
+          "id": "ep15",
+          "kind": "socket",
+          "x": 11833,
+          "y": 8335,
+          "height": 300,
+          "circuitId": "c3",
+          "wallId": "f1-v4",
+          "level": 0
+        },
+        {
+          "id": "ep16",
+          "kind": "power",
+          "x": 12161,
+          "y": 7958,
+          "height": 600,
+          "circuitId": "c3",
+          "wallId": "f1-v4",
+          "label": "steketopp",
+          "level": 0
+        },
+        {
+          "id": "ep17",
+          "kind": "switch",
+          "x": 17320,
+          "y": 7739,
+          "height": 900,
+          "circuitId": "c1",
+          "wallId": "f1-s",
+          "level": 0
+        },
+        {
+          "id": "ep18",
+          "kind": "switch2",
+          "x": 13362,
+          "y": 4365,
+          "height": 900,
+          "circuitId": "c1",
+          "wallId": "f1-h1",
+          "level": 0
+        },
+        {
+          "id": "ep19",
+          "kind": "light",
+          "x": 13286,
+          "y": 13454,
+          "height": 2500,
+          "circuitId": "c7",
+          "level": 1
+        },
+        {
+          "id": "ep20",
+          "kind": "light",
+          "x": 15872,
+          "y": 15702,
+          "height": 2500,
+          "circuitId": "c7",
+          "level": 1
+        },
+        {
+          "id": "ep21",
+          "kind": "light",
+          "x": 19484,
+          "y": 11547,
+          "height": 2500,
+          "circuitId": "c7",
+          "level": 1
+        },
+        {
+          "id": "ep22",
+          "kind": "light",
+          "x": 10250,
+          "y": 7247,
+          "height": 2500,
+          "circuitId": "c7",
+          "level": 1
+        },
+        {
+          "id": "ep23",
+          "kind": "light",
+          "x": 13886,
+          "y": 7167,
+          "height": 2500,
+          "circuitId": "c7",
+          "level": 1
+        },
+        {
+          "id": "ep24",
+          "kind": "light",
+          "x": 16344,
+          "y": 8817,
+          "height": 2500,
+          "circuitId": "c7",
+          "level": 1
+        },
+        {
+          "id": "ep25",
+          "kind": "socket",
+          "x": 14718,
+          "y": 14698,
+          "height": 300,
+          "circuitId": "c8",
+          "wallId": "f2-v1",
+          "level": 1
+        },
+        {
+          "id": "ep26",
+          "kind": "socket",
+          "x": 12362,
+          "y": 12651,
+          "height": 300,
+          "circuitId": "c8",
+          "wallId": "f2-v1",
+          "level": 1
+        },
+        {
+          "id": "ep27",
+          "kind": "socket",
+          "x": 18330,
+          "y": 10543,
+          "height": 300,
+          "circuitId": "c8",
+          "wallId": "f2-v1",
+          "level": 1
+        },
+        {
+          "id": "ep28",
+          "kind": "socket2",
+          "x": 11827,
+          "y": 3754,
+          "height": 300,
+          "circuitId": "c8",
+          "wallId": "f2-e",
+          "level": 1
+        },
+        {
+          "id": "ep29",
+          "kind": "socket",
+          "x": 12378,
+          "y": 6665,
+          "height": 300,
+          "circuitId": "c9",
+          "wallId": "f2-v4",
+          "level": 1
+        },
+        {
+          "id": "ep30",
+          "kind": "power",
+          "x": 13180,
+          "y": 5741,
+          "height": 600,
+          "circuitId": "c9",
+          "wallId": "f2-v4",
+          "label": "steketopp",
+          "level": 1
+        },
+        {
+          "id": "ep31",
+          "kind": "socket_ip44",
+          "x": 15673,
+          "y": 7910,
+          "height": 1100,
+          "circuitId": "c10",
+          "wallId": "f2-v2",
+          "level": 1
+        },
+        {
+          "id": "ep32",
+          "kind": "socket_ip44",
+          "x": 16396,
+          "y": 7078,
+          "height": 1100,
+          "circuitId": "c10",
+          "wallId": "f2-s",
+          "level": 1
+        },
+        {
+          "id": "ep33",
+          "kind": "switch",
+          "x": 17308,
+          "y": 7708,
+          "height": 900,
+          "circuitId": "c11",
+          "wallId": "f2-s",
+          "level": 1
+        },
+        {
+          "id": "ep34",
+          "kind": "switch",
+          "x": 13575,
+          "y": 10138,
+          "height": 900,
+          "circuitId": "c11",
+          "wallId": "f2-v2",
+          "level": 1
+        },
+        {
+          "id": "ep35",
+          "kind": "light",
+          "x": 29114,
+          "y": 13942,
+          "height": 2500,
+          "circuitId": "c12",
+          "level": 0
+        },
+        {
+          "id": "ep36",
+          "kind": "socket",
+          "x": 27507,
+          "y": 16545,
+          "height": 300,
+          "wallId": "u-v1",
+          "circuitId": "c12",
+          "level": 0
+        }
+      ],
+      "circuits": [
+        {
+          "id": "c1",
+          "name": "Lys 1. etasje",
+          "kind": "light",
+          "breaker": {
+            "type": "MCB",
+            "rating": 10,
+            "curve": "C"
+          },
+          "cable": "3x1.5",
+          "phase": "L1"
+        },
+        {
+          "id": "c2",
+          "name": "Stikk stue 1",
+          "kind": "socket",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L2"
+        },
+        {
+          "id": "c3",
+          "name": "Kjøkken 1",
+          "kind": "power",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L3"
+        },
+        {
+          "id": "c4",
+          "name": "Stikk soverom 1",
+          "kind": "socket",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L1"
+        },
+        {
+          "id": "c5",
+          "name": "Bad 1. etasje",
+          "kind": "wet",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L2"
+        },
+        {
+          "id": "c6",
+          "name": "Utvendig",
+          "kind": "outdoor",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L3"
+        },
+        {
+          "id": "c7",
+          "name": "Lys 2. etasje",
+          "kind": "light",
+          "breaker": {
+            "type": "MCB",
+            "rating": 10,
+            "curve": "C"
+          },
+          "cable": "3x1.5",
+          "phase": "L1"
+        },
+        {
+          "id": "c8",
+          "name": "Stikk 2. etasje",
+          "kind": "socket",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L2"
+        },
+        {
+          "id": "c9",
+          "name": "Kjøkken 2",
+          "kind": "power",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L3"
+        },
+        {
+          "id": "c10",
+          "name": "Bad 2. etasje",
+          "kind": "wet",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L1"
+        },
+        {
+          "id": "c11",
+          "name": "Gang og trapp",
+          "kind": "light",
+          "breaker": {
+            "type": "MCB",
+            "rating": 10,
+            "curve": "C"
+          },
+          "cable": "3x1.5",
+          "phase": "L2"
+        },
+        {
+          "id": "c12",
+          "name": "Uthus",
+          "kind": "garage",
+          "breaker": {
+            "type": "RCBO",
+            "rating": 16,
+            "curve": "C"
+          },
+          "cable": "3x2.5",
+          "phase": "L2"
+        }
+      ],
+      "routes": [
+        {
+          "circuitId": "c1",
+          "path": [
+            {
+              "x": 19798,
+              "y": 13271
+            },
+            {
+              "x": 14590,
+              "y": 8745
+            },
+            {
+              "x": 15246,
+              "y": 7990
+            },
+            {
+              "x": 12378,
+              "y": 5497
+            },
+            {
+              "x": 10410,
+              "y": 7761
+            }
+          ],
+          "level": 0
+        },
+        {
+          "circuitId": "c2",
+          "path": [
+            {
+              "x": 21110,
+              "y": 11762
+            },
+            {
+              "x": 20454,
+              "y": 12517
+            },
+            {
+              "x": 10620,
+              "y": 5691
+            }
+          ],
+          "level": 0
+        },
+        {
+          "circuitId": "c3",
+          "path": [
+            {
+              "x": 19798,
+              "y": 13271
+            },
+            {
+              "x": 12817,
+              "y": 7203
+            },
+            {
+              "x": 12161,
+              "y": 7958
+            }
+          ],
+          "level": 0
+        },
+        {
+          "circuitId": "c4",
+          "path": [
+            {
+              "x": 19798,
+              "y": 13271
+            },
+            {
+              "x": 17731,
+              "y": 15649
+            },
+            {
+              "x": 8599,
+              "y": 7710
+            }
+          ],
+          "level": 0
+        },
+        {
+          "circuitId": "c5",
+          "path": [
+            {
+              "x": 19798,
+              "y": 13271
+            },
+            {
+              "x": 18175,
+              "y": 11861
+            },
+            {
+              "x": 19159,
+              "y": 10729
+            }
+          ],
+          "level": 0
+        },
+        {
+          "circuitId": "c7",
+          "path": [
+            {
+              "x": 17308,
+              "y": 7708
+            },
+            {
+              "x": 12732,
+              "y": 12971
+            },
+            {
+              "x": 8483,
+              "y": 9278
+            },
+            {
+              "x": 10250,
+              "y": 7247
+            }
+          ],
+          "level": 1
+        },
+        {
+          "circuitId": "c8",
+          "path": [
+            {
+              "x": 17308,
+              "y": 7708
+            },
+            {
+              "x": 14497,
+              "y": 10941
+            },
+            {
+              "x": 10250,
+              "y": 7247
+            }
+          ],
+          "level": 1
+        },
+        {
+          "circuitId": "c9",
+          "path": [
+            {
+              "x": 17308,
+              "y": 7708
+            },
+            {
+              "x": 13983,
+              "y": 4819
+            },
+            {
+              "x": 12378,
+              "y": 6665
+            }
+          ],
+          "level": 1
+        },
+        {
+          "circuitId": "c10",
+          "path": [
+            {
+              "x": 17308,
+              "y": 7708
+            },
+            {
+              "x": 16476,
+              "y": 6986
+            },
+            {
+              "x": 15673,
+              "y": 7910
+            }
+          ],
+          "level": 1
+        },
+        {
+          "circuitId": "c11",
+          "path": [
+            {
+              "x": 17308,
+              "y": 7708
+            },
+            {
+              "x": 14497,
+              "y": 10941
+            }
+          ],
+          "level": 1
+        }
+      ]
+    },
+    "heating": {
+      "collector": {
+        "id": "hc1",
+        "x": 19433,
+        "y": 11099,
+        "outputs": 6,
+        "label": "Fordeler",
+        "level": 0
+      },
+      "loops": [
+        {
+          "id": "h1-stue",
+          "roomId": "r1-stue",
+          "roomName": "Stue",
+          "polygon": [
+            {
+              "x": 12572,
+              "y": 7255
+            },
+            {
+              "x": 10459,
+              "y": 5418
+            },
+            {
+              "x": 12165,
+              "y": 3456
+            },
+            {
+              "x": 14278,
+              "y": 5293
+            }
+          ],
+          "stepMm": 150,
+          "pattern": "snake",
+          "pipe": "16x2",
+          "level": 0
+        },
+        {
+          "id": "h1-bad",
+          "roomId": "r1-bad",
+          "roomName": "Bad",
+          "polygon": [
+            {
+              "x": 18512,
+              "y": 14141
+            },
+            {
+              "x": 17229,
+              "y": 13026
+            },
+            {
+              "x": 19722,
+              "y": 10158
+            },
+            {
+              "x": 21005,
+              "y": 11273
+            }
+          ],
+          "stepMm": 100,
+          "pattern": "snake",
+          "pipe": "16x2",
+          "level": 0
+        },
+        {
+          "id": "h1-wing",
+          "roomId": "r1-wing",
+          "roomName": "Soverom 4",
+          "polygon": [
+            {
+              "x": 6680,
+              "y": 9156
+            },
+            {
+              "x": 5473,
+              "y": 8106
+            },
+            {
+              "x": 8556,
+              "y": 4559
+            },
+            {
+              "x": 9764,
+              "y": 5609
+            }
+          ],
+          "stepMm": 150,
+          "pattern": "snake",
+          "pipe": "16x2",
+          "level": 0
+        },
+        {
+          "id": "h2-stue",
+          "roomId": "r2-stue",
+          "roomName": "Stue",
+          "polygon": [
+            {
+              "x": 10660,
+              "y": 13117
+            },
+            {
+              "x": 6689,
+              "y": 9665
+            },
+            {
+              "x": 12147,
+              "y": 3386
+            },
+            {
+              "x": 16118,
+              "y": 6838
+            }
+          ],
+          "stepMm": 150,
+          "pattern": "snake",
+          "pipe": "16x2",
+          "level": 1
+        },
+        {
+          "id": "h2-bad",
+          "roomId": "r2-bad",
+          "roomName": "Bad",
+          "polygon": [
+            {
+              "x": 16280,
+              "y": 10383
+            },
+            {
+              "x": 14710,
+              "y": 9017
+            },
+            {
+              "x": 16396,
+              "y": 7078
+            },
+            {
+              "x": 17966,
+              "y": 8444
+            }
+          ],
+          "stepMm": 100,
+          "pattern": "snake",
+          "pipe": "16x2",
+          "level": 1
+        }
+      ],
+      "params": {
+        "supplyT": 35,
+        "returnT": 28,
+        "floorT": 29,
+        "screedMm": 60,
+        "insulation": "100",
+        "screedMix": "cement-sand",
+        "fixing": "staples"
+      }
+    }
+  },
+  "estimate": {
+    "lines": [],
+    "purchases": {},
+    "wasteSipPct": 7
+  }
+}

@@ -23,7 +23,8 @@ dist-ssr
 .env
 .env.*
 !.env.deploy.example
-/plans/
+/plans/*
+!/plans/oyesletta-22.json
 /storage/
 /public/storage/
 **/storage/config.php
