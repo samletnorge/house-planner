@@ -2,9 +2,10 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { fmtNum } from '../i18n'
 import { fmtM, unitLabel } from './labels'
-import { formatLength, formatMoney, type Plan, type SewerFixture, type WaterDiameter, type WaterNode, type WaterPipe } from '../model'
+import { formatLength, type Plan, type SewerFixture, type WaterDiameter, type WaterNode, type WaterPipe } from '../model'
 import { usePlanStore } from '../store/planStore'
 import { useViewOnly } from '../store/viewOnly'
+import { useMoney } from '../money'
 import { useCatalog } from '../estimate/catalog'
 import { LengthField } from '../ui/LengthField'
 import { Button, IconButton, Input, Segmented } from '../ui'
@@ -288,6 +289,7 @@ function NodeInspector({ plan, node, calc }: { plan: Plan; node: WaterNode; calc
 }
 
 export function WaterSummary({ plan }: { plan: Plan }) {
+  const money = useMoney()
   const { t } = useTranslation('networks')
   const catalog = useCatalog()
   const viewOnly = useViewOnly()
@@ -341,12 +343,12 @@ export function WaterSummary({ plan }: { plan: Plan }) {
                   </div>
                 )}
               </div>
-              <div className="net-item__sum">{i.price !== undefined ? formatMoney(waterSum(i)) : <span className="muted">{t('shared.ui.noPrice')}</span>}</div>
+              <div className="net-item__sum">{i.price !== undefined ? money(waterSum(i)) : <span className="muted">{t('shared.ui.noPrice')}</span>}</div>
             </div>
           ))}
           <div className="row total">
             <span>{t('water.summary.total')}</span>
-            <strong>{formatMoney(total)}</strong>
+            <strong>{money(total)}</strong>
           </div>
           {missing > 0 && <div className="muted">{t('shared.ui.missing', { count: missing })}</div>}
         </div>

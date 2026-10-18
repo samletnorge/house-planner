@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ElectricCircuit, ElectricPoint, ElectricPointKind, Plan } from '../../model'
-import { formatMoney } from '../../model'
+import { } from '../../model'
 import { fmtNum, t as tt } from '../../i18n'
 import { unitLabel } from '../../i18n/units'
 import { usePlanStore } from '../../store/planStore'
 import { useViewOnly } from '../../store/viewOnly'
+import { useMoney } from '../../money'
 import { useCatalog } from '../../estimate/catalog'
 import { Badge, Button, IconButton, Input, Table, Td, Th, Tr } from '../../ui'
 import { computeElectric, pointPower, type ElectricWarning } from './calc'
@@ -222,6 +223,7 @@ function Warnings({ list, onPick }: { list: ElectricWarning[]; onPick: (w: Elect
 }
 
 export function ElectricSummary({ plan }: { plan: Plan }) {
+  const money = useMoney()
   const { t } = useTranslation('networks')
   const commit = usePlanStore((s) => s.commit)
   const viewOnly = useViewOnly()
@@ -349,14 +351,14 @@ export function ElectricSummary({ plan }: { plan: Plan }) {
               <div className="el-item__qty">
                 {fmt(i.buyQty)} {unitLabel(i.buyUnit)}
               </div>
-              <div className="el-item__sum">{i.price !== undefined ? formatMoney(electricSum(i)) : '—'}</div>
+              <div className="el-item__sum">{i.price !== undefined ? money(electricSum(i)) : '—'}</div>
             </div>
           ))}
           {!priced.length && <p className="muted">{t('electric.panel.noMaterials')}</p>}
         </div>
         <div className="row total">
           <span>{t('electric.panel.total')}</span>
-          <strong>{formatMoney(total)}</strong>
+          <strong>{money(total)}</strong>
         </div>
         {missing > 0 && <div className="muted">{t('electric.panel.noPrice', { n: missing })}</div>}
       </div>

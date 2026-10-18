@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Profile menu: display name (used as the revision author) and currency for prices (₽ RUB, kr NOK, € EUR, $ USD); only the symbol changes, values are not converted.
 - Multi-storey plans: `level` on walls, furniture, rooms, zones and networks, a floor switcher in the header, per-floor room detection and summary, 3D stacking with `site.floorHeight`, and per-level network layers. Old plans read as level 0; `CLIENT_VERSION` / `MIN_CLIENT_VERSION` raised to 7.
 
 ### Changed

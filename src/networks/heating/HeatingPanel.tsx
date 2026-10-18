@@ -1,11 +1,12 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { HeatingLoop, HeatingStep, Plan } from '../../model'
-import { formatMoney } from '../../model'
+import { } from '../../model'
 import { fmtNum } from '../../i18n'
 import { unitLabel } from '../../i18n/units'
 import { usePlanStore } from '../../store/planStore'
 import { useViewOnly } from '../../store/viewOnly'
+import { useMoney } from '../../money'
 import { useCatalog } from '../../estimate/catalog'
 import { Button, IconButton, Input, Segmented, Table, Td, Th, Tr } from '../../ui'
 import { computeHeating, coverLabel, type HeatingWarning } from './calc'
@@ -198,6 +199,7 @@ function Warnings({ list }: { list: HeatingWarning[] }) {
 }
 
 export function HeatingSummary({ plan }: { plan: Plan }) {
+  const money = useMoney()
   const { t } = useTranslation('networks')
   const commit = usePlanStore((s) => s.commit)
   const locked = useLayerLocks().heating
@@ -404,14 +406,14 @@ export function HeatingSummary({ plan }: { plan: Plan }) {
               <div className="hp-item__qty">
                 {fmt(i.buyQty)} {unitLabel(i.buyUnit)}
               </div>
-              <div className="hp-item__sum">{i.price !== undefined ? formatMoney(heatingSum(i)) : '—'}</div>
+              <div className="hp-item__sum">{i.price !== undefined ? money(heatingSum(i)) : '—'}</div>
             </div>
           ))}
           {!priced.length && <p className="muted">{t('heating.panel.noMaterials')}</p>}
         </div>
         <div className="row total">
           <span>{t('heating.panel.materialsTotal')}</span>
-          <strong>{formatMoney(total)}</strong>
+          <strong>{money(total)}</strong>
         </div>
         {missing > 0 && (
           <div className="muted">

@@ -2,9 +2,10 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { fmtNum, lang, t as tr } from '../i18n'
 import { fmtPct, unitLabel } from './labels'
-import { formatLength, formatMoney, type Plan, type SewerDiameter, type SewerFixture, type SewerNode, type SewerPipe } from '../model'
+import { formatLength, type Plan, type SewerDiameter, type SewerFixture, type SewerNode, type SewerPipe } from '../model'
 import { usePlanStore } from '../store/planStore'
 import { useViewOnly } from '../store/viewOnly'
+import { useMoney } from '../money'
 import { useCatalog } from '../estimate/catalog'
 import { LengthField } from '../ui/LengthField'
 import { Badge, Button, IconButton, Input, Segmented } from '../ui'
@@ -345,6 +346,7 @@ function NodeInspector({ plan, node, calc }: { plan: Plan; node: SewerNode; calc
 }
 
 export function SewerSummary({ plan }: { plan: Plan }) {
+  const money = useMoney()
   const { t } = useTranslation('networks')
   const catalog = useCatalog()
   const viewOnly = useViewOnly()
@@ -408,12 +410,12 @@ export function SewerSummary({ plan }: { plan: Plan }) {
                 {fmt(i.buyQty)} {unitLabel(i.buyUnit)}
                 {unitLabel(i.buyUnit) !== unitLabel(i.unit) && <div className="muted">{fmt(i.qty)} {unitLabel(i.unit)}</div>}
               </div>
-              <div className="net-item__sum">{i.price !== undefined ? formatMoney(itemSum(i)) : <span className="muted">{t('shared.ui.noPrice')}</span>}</div>
+              <div className="net-item__sum">{i.price !== undefined ? money(itemSum(i)) : <span className="muted">{t('shared.ui.noPrice')}</span>}</div>
             </div>
           ))}
           <div className="row total">
             <span>{t('sewer.summary.total')}</span>
-            <strong>{formatMoney(total)}</strong>
+            <strong>{money(total)}</strong>
           </div>
           {missing > 0 && <div className="muted">{t('shared.ui.missing', { count: missing })}</div>}
         </div>

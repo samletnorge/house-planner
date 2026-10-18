@@ -4,13 +4,14 @@ import { t as tr } from '../i18n'
 import { unitLabel } from '../i18n/units'
 import type { Plan } from '../model'
 import { useViewOnly } from '../store/viewOnly'
+import { useMoney } from '../money'
 import { RAL_CLASSIC, ralCode, ralLabel } from '../view3d/ral'
 import { Button, Checkbox, IconButton, Table, Td, Th, Tr } from '../ui'
 import { downloadCsv, toCsv } from './csv'
 import type { PetrovichLink } from './petrovich'
 import { PetrovichCart } from './PetrovichCart'
 import { useCatalog, type CatalogItem } from './catalog'
-import { fmtDate, fmtNum, fmtRub, numText, parseNum, today } from './format'
+import { fmtDate, fmtNum, numText, parseNum, today } from './format'
 import { buildRows, estimateOf, newLineId, removeLine, rowSum, setPurchase, upsertLine, withEstimate, type Row } from './rows'
 import './estimate.css'
 
@@ -91,6 +92,7 @@ function Colors({ plan }: { plan: Plan }) {
 }
 
 export default function EstimatePage({ plan, onChange }: Props) {
+  const money = useMoney()
   const { t } = useTranslation('estimate')
   const catalog = useCatalog()
   const viewOnly = useViewOnly()
@@ -257,12 +259,12 @@ export default function EstimatePage({ plan, onChange }: Props) {
                         onCommit={(v) => patch(r, { price: parseNum(v) })}
                       />
                     ) : r.price !== undefined ? (
-                      fmtRub(r.price)
+                      money(r.price)
                     ) : (
                       '—'
                     )}
                   </Td>
-                  <Td num>{r.price !== undefined ? fmtRub(rowSum(r)) : '—'}</Td>
+                  <Td num>{r.price !== undefined ? money(rowSum(r)) : '—'}</Td>
                   <Td className="est-del">
                     {!viewOnly && r.line && (
                       <IconButton
@@ -284,7 +286,7 @@ export default function EstimatePage({ plan, onChange }: Props) {
           <tfoot>
             <tr className="est-total">
               <td colSpan={6}>{t('page.total')}</td>
-              <td className="num">{fmtRub(total)}</td>
+              <td className="num">{money(total)}</td>
               <td className="est-del" />
             </tr>
           </tfoot>
@@ -320,7 +322,7 @@ export default function EstimatePage({ plan, onChange }: Props) {
 
       <datalist id="est-catalog">
         {catalog.map((c) => (
-          <option key={c.id} value={c.name} label={`${c.vendor ?? ''} · ${fmtRub(c.price)}/${unitLabel(c.unit)}`} />
+          <option key={c.id} value={c.name} label={`${c.vendor ?? ''} · ${money(c.price)}/${unitLabel(c.unit)}`} />
         ))}
       </datalist>
     </div>

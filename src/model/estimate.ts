@@ -1,4 +1,4 @@
-import { fmtRub, t } from '../i18n'
+import { t } from '../i18n'
 import { wallLength } from './geometry'
 import type { Material, Plan, PricePer, Wall } from './schema'
 
@@ -136,4 +136,3 @@ export const unitLabels: Record<PricePer, string> = {
   get m() { return t('common:units.m') },
 }
 
-export const formatMoney = (rub: number) => fmtRub(rub)

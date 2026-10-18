@@ -1,7 +1,8 @@
 import { useMemo, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { t, numberFormat } from '../i18n'
-import { filterPlanByLevel, formatMoney, formatNumber, levelsOf } from '../model'
+import { filterPlanByLevel, formatNumber, levelsOf } from '../model'
+import { useMoney } from '../money'
 import type { PlanWithRooms } from './rooms'
 import { usePlanStore } from '../store/planStore'
 import { computePlanSummary, type BuildingSummary, type Clearance } from './summary'
@@ -60,6 +61,7 @@ function lowerName(b: BuildingSummary) {
 
 export function PlanSummary({ plan }: { plan: PlanWithRooms }) {
   const { t } = useTranslation('plan')
+  const money = useMoney()
   const level = usePlanStore((st) => st.level)
   const levelPlan = useMemo(() => filterPlanByLevel(plan, level), [plan, level])
   const s = useMemo(() => computePlanSummary(levelPlan), [levelPlan])
@@ -170,7 +172,7 @@ export function PlanSummary({ plan }: { plan: PlanWithRooms }) {
 
       <Section title={t('summary.wallCost')}>
         <Row label={t('summary.withWaste', { pct: formatNumber(s.estimate.wastePct, 1) })} bad={s.estimate.missingPrices > 0 ? t('summary.noPrice', { count: s.estimate.missingPrices }) : undefined}>
-          {formatMoney(s.estimate.total)}
+          {money(s.estimate.total)}
         </Row>
       </Section>
     </div>

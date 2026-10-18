@@ -7,7 +7,6 @@ import {
   findMaterial,
   fitOffset,
   formatLength,
-  formatMoney,
   kindLabels,
   materialColor,
   setWallLength,
@@ -33,6 +32,7 @@ import {
   type WallEstimateLine,
 } from '../model'
 import { usePlanStore } from '../store/planStore'
+import { useMoney } from '../money'
 import { useViewOnly } from '../store/viewOnly'
 import { resolveFurniture } from '../furniture/catalog'
 import { buildingSel, selSummary, streetAlignDeg, type Selection } from '../canvas/selection/model'
@@ -598,6 +598,7 @@ const checked = (iso?: string) => {
 }
 
 function EstimateRow({ line }: { line: WallEstimateLine }) {
+  const money = useMoney()
   const { t } = useTranslation('plan')
   const m = line.material
   const unit = line.unit ? unitLabels[line.unit] : ''
@@ -624,9 +625,9 @@ function EstimateRow({ line }: { line: WallEstimateLine }) {
         )}
         <div className="material__calc">
           {line.qty !== null ? `${fmt(line.qty)} ${unit}` : '—'}
-          {line.price !== undefined ? ` × ${formatMoney(line.price)}` : ''}
+          {line.price !== undefined ? ` × ${money(line.price)}` : ''}
           {line.cost !== null ? ' = ' : ''}
-          {line.cost !== null && <strong>{formatMoney(line.cost)}</strong>}
+          {line.cost !== null && <strong>{money(line.cost)}</strong>}
           <span className="muted">{t('estimate.areaWithWaste', { area: fmt(line.areaWithWasteM2) })}</span>
           {line.price === undefined && <div className="muted">{t('estimate.noPrice')}</div>}
         </div>
@@ -735,6 +736,7 @@ function SummaryPanel({ plan }: { plan: Plan }) {
 }
 
 function PlanSummary({ plan }: { plan: Plan }) {
+  const money = useMoney()
   const { t } = useTranslation('plan')
   const commit = usePlanStore((s) => s.commit)
   const estimate = computeWallEstimate(plan)
@@ -785,7 +787,7 @@ function PlanSummary({ plan }: { plan: Plan }) {
         </label>
         <div className="row total">
           <span>{t('materials.total')}</span>
-          <strong>{formatMoney(estimate.total)}</strong>
+          <strong>{money(estimate.total)}</strong>
         </div>
         {estimate.missingPrices > 0 && <div className="muted">{t('materials.noPrice', { count: estimate.missingPrices })}</div>}
       </div>

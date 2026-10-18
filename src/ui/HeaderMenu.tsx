@@ -20,6 +20,8 @@ import { usePlanStore } from '../store/planStore'
 import { IconButton } from './IconButton'
 import { Menu, MenuItem, MenuSection } from './Menu'
 import { downloadPlan, readPlanFile } from './planFile'
+import { CURRENCIES, type Currency } from '../money'
+import { useProfile } from '../store/profileStore'
 
 const when = (iso?: string) => {
   if (!iso) return ''
@@ -184,6 +186,10 @@ function Versions({ close }: { close: () => void }) {
 }
 
 export function HeaderMenu() {
+  const profileName = useProfile((s) => s.name)
+  const currency = useProfile((s) => s.currency)
+  const setName = useProfile((s) => s.setName)
+  const setCurrency = useProfile((s) => s.setCurrency)
   const { t } = useTranslation('common')
   const plan = usePlanStore((s) => s.plan)
   const commit = usePlanStore((s) => s.commit)
@@ -232,6 +238,22 @@ export function HeaderMenu() {
               </MenuItem>
             </MenuSection>
             {showVersions && <Versions close={close} />}
+            <MenuSection title={t('profile.title')}>
+              <div className="profile__row">
+                <span className="profile__label">{t('profile.name')}</span>
+                <Input size="sm" value={profileName} placeholder={t('profile.namePlaceholder')} onChange={(e) => setName(e.target.value)} />
+              </div>
+              <div className="profile__row">
+                <span className="profile__label">{t('profile.currency')}</span>
+                <Segmented<Currency>
+                  size="sm"
+                  value={currency}
+                  options={CURRENCIES.map((c) => ({ value: c.id, label: c.symbol, title: c.name }))}
+                  onChange={setCurrency}
+                />
+                <span className="profile__note">{t('profile.currencyNote')}</span>
+              </div>
+            </MenuSection>
             <MenuSection title={t('language.label')}>
               <div className="versions__head">
                 <Segmented<Lang>

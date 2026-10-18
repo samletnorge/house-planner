@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { parsePlan, type Plan } from '../model'
 import { t } from '../i18n'
 import { usePlanStore } from '../store/planStore'
+import { useProfile } from '../store/profileStore'
 import { showToast } from '../ui/Toast'
 import { isViewOnly } from '../store/viewOnly'
 import { ServerStorage } from './server'
@@ -139,7 +140,7 @@ async function push() {
   const base = confirmed
   try {
     let saved
-    const author = nextAuthor ?? 'web'
+    const author = nextAuthor ?? (useProfile.getState().name.trim().slice(0, 40) || 'web')
     nextAuthor = null
     try {
       saved = await serverStorage.save(plan, rev, author)

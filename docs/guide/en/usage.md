@@ -60,6 +60,10 @@ One A4 sheet: wall materials, doors, windows and gates, network groups, and manu
 
 The header switcher (`1`, `2`, `+`) changes the floor. Only the current floor is drawn and editable; room detection, snapping and the summary follow it. `+` adds an empty floor. The 3D view stacks floors by `site.floorHeight` (3 m by default); "Current floor" shows only the selected one.
 
+## Profile and currency
+
+"⋯" → "Profile" sets a display name and the currency for all prices: ₽ RUB, kr NOK, € EUR or $ USD. The name is sent as the author of plan revisions. Only the currency symbol changes — the numbers in the plan and the catalog are not converted, so enter prices in the chosen currency.
+
 ## Versions and snapshots
 
 Every save is a numbered revision on the server. "⋯" → "Versions" shows two lists: "Saved" (named snapshots) and "All changes" (every revision with author and time). Create a snapshot with a name, restore any snapshot or revision: the restore is written as a new revision, nothing is lost.

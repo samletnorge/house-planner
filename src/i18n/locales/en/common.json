@@ -163,5 +163,12 @@
     "label": "Floor",
     "level": "Floor {{level}}",
     "add": "Add floor"
+  },
+  "profile": {
+    "title": "Profile",
+    "name": "Name",
+    "namePlaceholder": "Your name or company",
+    "currency": "Currency",
+    "currencyNote": "Prices keep their numbers; only the currency symbol changes. Catalog prices are not converted."
   }
 }

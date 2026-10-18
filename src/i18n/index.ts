@@ -116,8 +116,6 @@ export const numberFormat = (opts: Intl.NumberFormatOptions = {}) => {
 export const fmtNum = (v: number, maxDigits = 2, minDigits = 0) =>
   numberFormat({ maximumFractionDigits: maxDigits, minimumFractionDigits: minDigits }).format(v)
 
-export const fmtRub = (v: number) => `${fmtNum(Math.round(v), 0)} ₽`
-
 export const fmtDateTime = (d: Date, opts: Intl.DateTimeFormatOptions) => d.toLocaleString(locale(), opts)
 
 export const t = i18n.t.bind(i18n)

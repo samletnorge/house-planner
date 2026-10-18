@@ -1,6 +1,5 @@
-import { fmtDateTime, fmtNum as fmtNumber, fmtRub as fmtRubles, lang } from '../i18n'
+import { fmtDateTime, fmtNum as fmtNumber, lang } from '../i18n'
 
-export const fmtRub = (v: number) => fmtRubles(v)
 export const fmtNum = (v: number) => fmtNumber(v, 2)
 
 export const today = () => {
